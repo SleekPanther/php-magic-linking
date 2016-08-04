@@ -46,3 +46,8 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 
 - a
 - b
+
+
+##Future Feature Goals##
+
+- Printing Breadcrumbs (separateed by >, current page=bold, maybe just use "page name" variable & print containing folders, MUST HAVE INDEX PAGE IN ALL FOLDERS )
