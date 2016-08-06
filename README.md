@@ -35,6 +35,10 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 
 - Almost every actual viewable page is called `index.php` <br>
 BUT each have their own folder with unique names (**the *containing folder* is very important to identify the current page**)
+- **Folder names should be lowercase NO SPACES**
+- `-` (hyphen characters) will be replaced with `/` (forward-slashes)
+- `_` (underscores) will be replaces with spaces
+- The fitst letter of each word will be capitalized
 - Every page must manually link to `top.php` <br>
 `<?php include("non-pages/php-include/top.php"); ?>` works for the **HomePage** <br>
 But for pages 1 level below the homepage folder it must be: `<?php include("../non-pages/php-include/top.php"); ?>`
