@@ -26,7 +26,7 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 - This code analyzes the URL to find how many `/` characters are present
 - These tells you how many folders deep a file is stored
 - Act as if you are in the root directory for all links
-- **Add `<?php echo $upFolderPlaceHolder; ?>` before any link**
+- **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
 - The code in `top.php` will magically print the correct number or `../` in your link to make it work no matter how many folders deep the file is located
 
 #[Download Complete Project Zip](https://github.com/SleekPanther/php-magic-linking/archive/master.zip)#
@@ -51,7 +51,7 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 
 ###Linking Usage Examples###
 
-- **Use `<a href="<?php echo $upFolderPlaceHolder; ?>index.php">Home</a>` to link to "Homepage"** instead of `<a href="index.php">Home</a>`
+- **Use `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` to link to "Homepage"** instead of `<a href="index.php">Home</a>`
 - 9099
 
 ###Optional URL Features###
@@ -64,3 +64,10 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 
 - Printing Breadcrumbs (separateed by >, current page=bold, maybe just use "page name" variable & print containing folders, MUST HAVE INDEX PAGE IN ALL FOLDERS )
 - ALSO USED TO PRINT ID'S IN THE BODY TAG FOR EACH PAGE
+- current page activePage class explain
+- fewer pages (home, portfolio, test, about)
+- remove most css
+- link to menu git project <br>
+https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/ 
+- less css, no bother mobile friendly
+- css border on header, <nav, footer
