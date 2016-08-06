@@ -33,6 +33,12 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 
 ##Code Details###
 
+- Every page must manually link to `top.php` <br>
+`<?php include("non-pages/php-include/top.php"); ?>` works for the **HomePage** <br>
+But for pages 1 level below the homepage folder it must be: `<?php include("../non-pages/php-include/top.php"); ?>`
+- Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
+`<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
+
 ###Linking###
 
 -
