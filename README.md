@@ -31,6 +31,17 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 
 #[Download Complete Project Zip](https://github.com/SleekPanther/php-magic-linking/archive/master.zip)#
 
+##Major Features##
+
+1. Consistent nav on all pages
+2. Link to any page without worring about navigating up directories <br>
+(*also applies to css stylesheets, images & any files on your site*)
+3. `<title>` Tags that match the current page
+4. Print the page name as the `<h1>` automatically (no hard-coding)
+5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
+6. Print unique ID's for each page <br>
+can use css to apply styles to **target on only 1 page**
+
 ##Code Details###
 
 - Almost every actual viewable page is called `index.php` <br>
@@ -47,7 +58,7 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 
 ###Linking###
 
--
+123
 
 ###Linking Usage Examples###
 
@@ -71,3 +82,4 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/ 
 - less css, no bother mobile friendly
 - css border on header, <nav, footer
+- test boring page with section outlines (**line above**), lipsum paragraphs 
