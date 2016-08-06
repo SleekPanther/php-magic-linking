@@ -63,3 +63,4 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 ##Future Feature Goals##
 
 - Printing Breadcrumbs (separateed by >, current page=bold, maybe just use "page name" variable & print containing folders, MUST HAVE INDEX PAGE IN ALL FOLDERS )
+- ALSO USED TO PRINT ID'S IN THE BODY TAG FOR EACH PAGE
