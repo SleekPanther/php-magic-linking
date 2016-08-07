@@ -4,5 +4,3 @@
 </main><!-- close main, opened in header.php -->
 
 <?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>
-</body>
-</html>
