@@ -4,36 +4,38 @@
 
 You often store each page in a separate folder to allow more readable urls. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc in the same folder, but it's not very organized or scalable. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. You putting an page  `index.php` in the a folder `about/`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
 
-You can have multiple layers of sub-directories: a main gallery page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
+You can have multiple layers of sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
-But you run into trouble linking between pages. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **php include** to keep the same navigation menu on all pages. But nested sub-directories cause problems.
+But you run into trouble linking between pages. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the same navigation menu on all pages. But nested sub-directories cause problems.
 
 <s>A cheater "solution"  is to have a copy of `nav.php` for each level of directories</s><br>
 DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
-**The Situation (Problematic Linking)**
- - Going from the **homepage** (`index.php` in the root folder of `mySite.com`) to the "about page" would be **`href="about/"`** or `href="about/index.php"`
+###The Situation (Problematic Linking)###
+ - Going **from the** ***Homepage*** (`index.php` in the root folder of `mySite.com`) **to the** ***About Page***  would be **`href="about/"`** or `href="about/index.php"`
  - Linking **2-directories** down would be **`href=gallery/indoor/`**
- - Linking **from** the *homepage* always goes **down into** sub-directories
- <br>
- - On the **about page**, going to the "homepage" would be: **`href="../"`** or `href="../index.php"`
- - But getting to the other gallery page would be **`href="../gallery/indoor`**
+ - Linking **from the** ***homepage*** always goes **down into** sub-directories
+ <br><br>
+ - **From the** ***About Page*** back up **to the** ***homepage*** would be: **`href="../"`** or `href="../index.php"`
+  - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
+ <br><br>
+ - And **from the** ***Indoor galley*** all the way **to the** ***About Page*** would be `href="../../about/"`
  - &nbsp;
- - And going **from** the "indoor galley" **to** "about" would be: `href="../../about/"`
  - &nbsp;
- - &nbsp;
- - HTML requires 3 different ways to navigate to the same galley page, all based on where the files are in relation to each other
+ - 3 different links to the same galley page **is no good**.
+ <br>All based on where the folders are in relationship to each other
 
 ##The Solution##
 - **Act as if all links start in the root folder**
-- This code analyzes the URL to find how many `/` characters are present
-- These tells you how many folders deep a file is stored
-- Act as if you are in the root directory for all links
+- This code analyzes the URL to find how many folders below the **root directory** the current page is
 - **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
-- The code in `top.php` will magically print the correct number or `../` in your link to make it work no matter how many folders deep the file is located
+<br>This manual link **from** ***About*** **to* ***Home** `<a href="index.php">Home</a>`
+<br>**Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
+- Code in `top.php` magically prints the correct number or `../` in your link, making wherever the file is located
 
-#[Download Complete Project Zip](https://github.com/SleekPanther/php-magic-linking/archive/master.zip)#
+#[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
 
+qwerty(edited to  here)
 ##Major Features##
 
 1. Consistent nav on all pages (using the same `php include`)
