@@ -93,5 +93,39 @@
         $tagLine = " - UVM Bikes - Free Campus Bike Shop";  //Change this to match the tagline/slogan of your site. This will appear @ the end of every title page. Like the " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
         ?>
 <title><?php echo $pageTitle.$tagLine ; ?></title><!-- print the title by concatenating the current page title, & global site tagline/slogan -->
-    
+    <?php        
+        //YOU MUST LIST ALL THE PAGES ON THE SITE! But $pageArrayDropDown1 means anything that's in a 1st level dropdown, you don't have to organize them into sepatate arrays for each individual dropdown, just put pages that are the same distance down from the $ROOT_DIRECTORY in appropriate folders.
+        //THIS ALSO MEANS PUT $ROOT_DIRECTORY IN $pageArrayTop EVEN THOUGH IT'S NOT 1-LEVEL DOWN FROM ITSELF, IT'S ON THE SAME LEVEL OF THE NAV
+        $pageArrayTop = array( $ROOT_DIRECTORY, "portfolio", "prices-services" , "hours" , "classes-events" , "contact" , "about", 'tests');   //make a list of the ALL pages
+        $pageArrayDropDown1 = array ('portfolio_1', 'portfolio_2', 'examples', 't1', 't2');     //1st level of dropdown
+        $pageArrayDropDown2 = array ('example_1', 'example_2', 'example_3');
+        $activePageArrayTop = array_fill_keys($pageArrayTop, '');       //initialize associative array to hold the page name & the text "activePage" (a css class for the current page). Fill this array with nothing so it's the same size as its _pageArray one
+        $activePageArrayDropDown1 = array_fill_keys($pageArrayDropDown1, '');
+        $activePageArrayDropDown2 = array_fill_keys($pageArrayDropDown2, '');
+
+        //This function analyzes a level of the folder tree (whether its top level nav, or a dropdown) to find active pages. We want we want an indicator to the user that shows where they are. This is done by printing the class="activePage" on any link in the nav and then styling "activePage" to have a highlight background color. So if it's the homepage, the "Home" link will be highlighted. If it's a dropdown, all the links are highlighted. Example: the "Example 1" page is in "/portfolio/examples/example_1/index.php", so the top-level link to "Portfolio", the 1st-level dropdown to "Examples" and the 2nd-level dropdown to "Example 1" are all highlighted. $folderLevelToCheck is important & must match the level of the arrays that are being passed in. For instance, to analyze $pageArrayTop (the links on the top-level nav), you must pass in 0 as the 4th argument when calling the function
+        function fillActivePageArrays(&$arrayOfPages, &$activeArrayToFill, $split_url_adjusted2, $folderLevelToCheck){  //prepend & to pass arrays BY REFERENCE
+            
+            for($i = 0; $i < count($arrayOfPages); $i++){      //loop through the page array
+                if($split_url_adjusted2[$folderLevelToCheck] == $arrayOfPages[$i]){   //if the current containing folder (the active page) == the key stored in the page Array
+                    $activeArrayToFill[ $split_url_adjusted2[$folderLevelToCheck] ]= "activePage";     //print "activePage" in the $activeArrayToFill, at the index of "$folderLevelToCheck" since it's associative.
+                    break;      //if it finds the current page, break out of the loop. (This also avoids the case where 2 pages are considered "active" )
+                }
+            }   //at this point, $activeArrayToFill should have '' stored in all indecies EXCEPT the current page, which should have 'activePage'
+        }
+        
+        //call function to fill arrays with "activePage" in correct place. But only bother if the current page is a dropdown. Homepage is a special case, but for all deeper folder levels, they check >=. For instance, the "About Page" is a top-level page, so dropdowns shouldn't even be analyzed.
+        if($folderCountAdjusted == 0){      //special case for the homepage. Since it's in $ROOT_DIRETORY, it's essentialy 0 folders down from itself
+            $activePageArrayTop[$ROOT_DIRECTORY] = 'activePage';    //must hardcode activePage
+        }
+        if($folderCountAdjusted >= 1){
+            fillActivePageArrays($pageArrayTop, $activePageArrayTop, $split_url_adjusted, 1);
+        }
+        if($folderCountAdjusted >= 2){
+            fillActivePageArrays($pageArrayDropDown1, $activePageArrayDropDown1, $split_url_adjusted, 2);
+        }
+        if($folderCountAdjusted >= 3){
+            fillActivePageArrays($pageArrayDropDown2, $activePageArrayDropDown2, $split_url_adjusted, 3);
+        }
+    ?>
     ?>
