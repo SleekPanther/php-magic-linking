@@ -6,8 +6,6 @@
             <script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
         <![endif]-->
         <meta name="robots" content="index, follow">
-        <meta name="author" content="Your Name"><!-- Add your name/company -->
-        <meta name="description" content="Your description">
         
         <?php
 //=============IMPORTANT variable $ROOT_DIRECTORY must be where the project is housed (where the homepage is). ==========================
@@ -132,7 +130,34 @@
             fillActivePageArrays($pageArrayDropDown2, $activePageArrayDropDown2, $split_url_adjusted, 3);
         }
     ?>
-
+    
+    <?php
+        $pagesArrayAll = array_merge($pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2);      //list of all pages (folders on the entire site)
+        $pageMeteDescriptions = array_fill_keys($pagesArrayAll, '');    //fill the array with empty descriptions in case the text file doesn't have them
+        unset($pageMeteDescriptions[$ROOT_DIRECTORY]);      //the line abovve copied the value of $ROOT_DIRECTORY as the homepage description key, but we want to refer to it as "index" instead. So, remove this key & add a new blank one
+        $pageMeteDescriptions['index'] = '';
+        // All other pages are set in the text file "meta_descriptions.txt". ORDER DOESN'T MATTER
+        
+        $descFile = fopen($upFolderPlaceholder."non-pages/descriptions/meta_descriptions.txt", "r");    //open the description file
+        //FILE CONTENTS MUST MATCH THIS FORMAT:     the first word is the containing-folder, then a space, THEN your description. 1 PAGE PER LINE! So 'Portfolio 1' description is stored: "portfolio_1 This is the Portfolio 1 description". (The "portfolio_1" and the space will be removed, leaving you with whatever comes next as the actual description
+        while( ($line = fgets($descFile)) !== false){  //read through file
+            //echo $line . "<br>aas<br>";
+            $line = explode(' ', $line, 2);     //now it's an array
+            //print_r($line);
+            $arrayKey = $line[0];
+            //$description = $line[1];
+            $description = str_replace("\n", "", $line[1]);
+            $pageMeteDescriptions[$arrayKey] = $description;
+        }
+        fclose($descFile);
+        
+        echo "asdf<br>";
+        print_r($pageMeteDescriptions);
+        echo "<br>qwert<br>";
+    ?>
+    <meta name="author" content="Your Name"><!-- Add your name/company -->
+    <meta name="description" content="<?php echo $pageMeteDescriptions[$containing_folder] ?>">     <!-- description based on text file (lines above) -->
+    
     <link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- for mobile friendly -->
