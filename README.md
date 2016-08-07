@@ -73,8 +73,8 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 
 ##Future Feature Goals##
 
+- del meta name, desc
 - Printing Breadcrumbs (separateed by >, current page=bold, maybe just use "page name" variable & print containing folders, MUST HAVE INDEX PAGE IN ALL FOLDERS )
-- ALSO USED TO PRINT ID'S IN THE BODY TAG FOR EACH PAGE
 - current page activePage class explain
 - fewer pages (home, portfolio, test, about)
 - remove most css
@@ -83,3 +83,8 @@ https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-cs
 - less css, no bother mobile friendly
 - css border on header, <nav, footer
 - test boring page with section outlines (**line above**), lipsum paragraphs 
+- -meta desccriptions addition
+- page structurte (top nav header content footer) EXPLAIN HEADER REARRANGEMENT (start of `<main>`)
+- dont worry about less menu file
+- list all pages (36714768356)
+- more details in php comments
