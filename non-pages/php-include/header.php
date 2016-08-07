@@ -23,7 +23,6 @@
 
             echo '<strong>' . $pageTitle . '</strong>';     //After all the links are printed, just print the current page name (bold is optional)
         }
-        
     ?>
 </section>
 
