@@ -2,7 +2,7 @@
 
 This PHP template allows linking to any folder or file without manually navigating up &amp; down directories with   ../
 
-In web design you often  store each page in a separate folder to allow more readable urls. Instead of `mySite.com/abous_us_page.php`, you'd want `mySite.com/about` which means putting a page called `index.php` inside a folder called `about`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php`)
+In web design you often  store each page in a separate folder to allow more readable urls. Instead of `mySite.com/about_us_page.php`, you'd want `mySite.com/about` which means putting a page called `index.php` inside a folder called `about`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
 
 You can have multiple subdirectories: like a main gallery page `mySite.com/gallery` with a bunch of individual galleries ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
