@@ -92,8 +92,8 @@
         
         $tagLine = " - Your Tagline";  //Change this to match the tagline/slogan of your site. This will appear @ the end of every title page. Like the " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
         ?>
-<title><?php echo $pageTitle.$tagLine ; ?></title><!-- print the title by concatenating the current page title, & global site tagline/slogan -->
-
+        
+        <title><?php echo $pageTitle.$tagLine ; ?></title><!-- print the title by concatenating the current page title, & global site tagline/slogan -->
     <?php
         //-----EDIT THIS (ctrl+F & search for  36714768356 ---------------------------------
         //YOU MUST LIST ALL THE PAGES ON THE SITE! But $pageArrayDropDown1 means anything that's in a 1st level dropdown, you don't have to organize them into sepatate arrays for each individual dropdown, just put pages that are the same distance down from the $ROOT_DIRECTORY in appropriate folders.
@@ -130,7 +130,7 @@
             fillActivePageArrays($pageArrayDropDown2, $activePageArrayDropDown2, $split_url_adjusted, 3);
         }
     ?>
-    
+        
     <?php
         $pagesArrayAll = array_merge($pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2);      //list of all pages (folders on the entire site)
         $pageMeteDescriptions = array_fill_keys($pagesArrayAll, '');    //fill the array with empty descriptions in case the text file doesn't have them
@@ -140,29 +140,28 @@
         
         $descFile = fopen($upFolderPlaceholder."non-pages/descriptions/meta_descriptions.txt", "r");    //open the description file
         //FILE CONTENTS MUST MATCH THIS FORMAT:     the first word is the containing-folder, then a space, THEN your description. 1 PAGE PER LINE! So 'Portfolio 1' description is stored: "portfolio_1 This is the Portfolio 1 description". (The "portfolio_1" and the space will be removed, leaving you with whatever comes next as the actual description
+        //If the page isn't in $pageMeteDescriptions but IS IN THE TEXT FILE, it will be added
+        //If a page is in $pageMeteDescriptions but not in the text file, description will be blank
+        //IF IT ISN'T IN EITHER, THERE WILL BE AN ERROR
+        //MAKE SURE TO LIST ALL PAGES
+            //preferable, you add them to $pageArrayTop, $pageArrayDropDown1 etc.
         while( ($line = fgets($descFile)) !== false){  //read through file
-            //echo $line . "<br>aas<br>";
-            $line = explode(' ', $line, 2);     //now it's an array
-            //print_r($line);
-            $arrayKey = $line[0];
-            //$description = $line[1];
-            $description = str_replace("\n", "", $line[1]);
-            $pageMeteDescriptions[$arrayKey] = $description;
+            $line = explode(' ', $line, 2);     //Split @ 1st space. Now $line is an array until the end of the loop
+            $arrayKey = $line[0];       //this is the 1st word, the folder name (or page name)
+            $description = str_replace("\n", "", $line[1]);     //description is everything after the 1st word on the line. Also remove newline characters
+            $pageMeteDescriptions[$arrayKey] = $description;    //FINALLY store the description in the array with corresponding key
         }
         fclose($descFile);
-        
-        echo "asdf<br>";
-        print_r($pageMeteDescriptions);
-        echo "<br>qwert<br>";
     ?>
-    <meta name="author" content="Your Name"><!-- Add your name/company -->
-    <meta name="description" content="<?php echo $pageMeteDescriptions[$containing_folder] ?>">     <!-- description based on text file (lines above) -->
-    
-    <link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- for mobile friendly -->
-    <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/menu.css' rel='stylesheet' type='text/css' media='screen' /><!-- nav menu -->
-    <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />
+        <meta name="author" content="Your Name"><!-- Add your name/company -->
+        <meta name="description" content="<?php echo $pageMeteDescriptions[$containing_folder] ?>">     <!-- description from text file (lines above) -->
+
+        <link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- for mobile friendly -->
+        <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/menu.css' rel='stylesheet' type='text/css' media='screen' /><!-- nav menu -->
+        <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />
     
     </head>
     <!-- ################ begin body section ######################### -->
