@@ -10,7 +10,7 @@
             $tempBreadLink = $domain . '/';
             for($i = 0; $i < $folderCountAdjusted; $i++){
                 $tempBreadLink .= $split_url_adjusted[$i] .'/';
-                echo '<a href="' . $tempBreadLink . '" >' .$tempBreadLink  .'</a> > ';
+                echo '<a href="' . $tempBreadLink . '" >' . ($i== 0 ? 'Home' : convFolder2PgTitle($split_url_adjusted[$i]) ) .'</a> > ';
             }
 
             echo '<strong>' . $pageTitle . '</strong>';
