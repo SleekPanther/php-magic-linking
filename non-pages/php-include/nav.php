@@ -21,7 +21,6 @@
                         <input type="checkbox" id="drop-3"/>
                         <ul>
                             <li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/examples/example_1/index.php"' . ' class="'.$activePageArrayDropDown2['example_1'].'"'; ?>>Example 1</a></li>
-                            <li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/examples/example_2/index.php"' . ' class="'.$activePageArrayDropDown2['example_2'].'"'; ?>>Example 2</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -90,7 +90,7 @@
             $pageTitle = "Home";
         }
         
-        $tagLine = " - UVM Bikes - Free Campus Bike Shop";  //Change this to match the tagline/slogan of your site. This will appear @ the end of every title page. Like the " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
+        $tagLine = " - Your Tagline";  //Change this to match the tagline/slogan of your site. This will appear @ the end of every title page. Like the " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
         ?>
 <title><?php echo $pageTitle.$tagLine ; ?></title><!-- print the title by concatenating the current page title, & global site tagline/slogan -->
     <?php        
