@@ -29,7 +29,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 - **Act as if all links start in the root folder**
 - This code analyzes the URL to find how many folders below the **root directory** the current page is
 - **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
-<br>This manual link **from** ***About*** **to* ***Home** `<a href="index.php">Home</a>`
+<br>This manual link **from** ***About*** **to** ***Home*** `<a href="index.php">Home</a>`
 <br>**Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
 - Code in `top.php` magically prints the correct number or `../` in your link, making wherever the file is located
 
