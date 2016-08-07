@@ -11,7 +11,7 @@
         
         <?php
 //=============IMPORTANT variable $ROOT_DIRECTORY must be where the project is housed (where the homepage is). ==========================
-        $ROOT_DIRECTORY = "assignment7";        //MUST CHANGE THIS OR THE ENTIRE PROJECT WON'T WORK!
+        $ROOT_DIRECTORY = "php-magic-linking";        //MUST CHANGE THIS OR THE ENTIRE PROJECT WON'T WORK! Default is "php-magic-linking" because that's the name of the git repo, but you can rename the root folder and everything else will work as long as this variable matches the new name
         
         //======Magical code to display errors========\\
         //======COMMENT OUT WHEN YOU'RE FINISHED TESTING========\\
@@ -128,4 +128,20 @@
             fillActivePageArrays($pageArrayDropDown2, $activePageArrayDropDown2, $split_url_adjusted, 3);
         }
     ?>
+
+    <link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- for mobile friendly -->
+    <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/menu.css' rel='stylesheet' type='text/css' media='screen' /><!-- nav menu -->
+    <link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />
+    
+    </head>
+    <!-- ################ begin body section ######################### -->
+    <?php
+        echo '<body id="'.$containing_folder.'">';
+    ?>
+    <p class="skipToContent"><a href="#actualMainContent">Skip to Main Content</a></p><!-- accessibility skip button, positioned off screen -->
+    <?php
+        include ($upFolderPlaceholder."non-pages/php-include/nav.php");
+        include ($upFolderPlaceholder."non-pages/php-include/header.php");
     ?>

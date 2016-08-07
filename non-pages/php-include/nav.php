@@ -29,7 +29,7 @@
             
             <li>
                 <!-- First Tier Drop Down -->
-                <label for="drop-4" class="toggle">Portfolio +</label>
+                <label for="drop-4" class="toggle">Tests +</label>
                 <a href="#" <?php echo 'class="'.$activePageArrayTop['tests'].'"'; ?>>Tests</a>
                 <input type="checkbox" id="drop-4"/>
                 <ul>
