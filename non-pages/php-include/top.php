@@ -81,4 +81,17 @@
         //end debugging
         
         
+        //This is basiaclly the "Page Name". Can easily be added to all <title> tags & printed as the 1st <h1> on pages. ALL BASED ON CONTAINING FOLDER
+        $pageTitle = $containing_folder;                     //initially set to the entire fontaining folder
+        $pageTitle = str_replace("-" , " / ", $pageTitle);    //replace dashes with slashes and spaces
+        $pageTitle = str_replace("_" , " ", $pageTitle);      //replace underscores with spaces (multi-word title)
+        $pageTitle = ucwords($pageTitle);                     //capitolize 1st letter of each word
+        if ($folderCountAdjusted == 0) {    //if it's the homepage, hardcode it instead of the base folder where the site's located
+            $pageTitle = "Home";
+        }
+        
+        $tagLine = " - UVM Bikes - Free Campus Bike Shop";  //Change this to match the tagline/slogan of your site. This will appear @ the end of every title page. Like the " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
+        ?>
+<title><?php echo $pageTitle.$tagLine ; ?></title><!-- print the title by concatenating the current page title, & global site tagline/slogan -->
+    
     ?>
