@@ -15,14 +15,14 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
  - Going **from the** ***Homepage*** (`index.php` in the root folder of `mySite.com`) **to the** ***About Page***  would be **`href="about/"`** or `href="about/index.php"`
  - Linking **2-directories** down would be **`href=gallery/indoor/`**
  - Linking **from the** ***homepage*** always goes **down into** sub-directories
- <br><br>
+ - &nbsp;
  - **From the** ***About Page*** back up **to the** ***homepage*** would be: **`href="../"`** or `href="../index.php"`
   - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
- <br><br>
+ - &nbsp;
  - And **from the** ***Indoor galley*** all the way **to the** ***About Page*** would be `href="../../about/"`
  - &nbsp;
  - &nbsp;
- - 3 different links to the same galley page **is no good**.
+ - **3 different links to the same galley page is no good!**
  <br>All based on where the folders are in relationship to each other
 
 ##The Solution##
