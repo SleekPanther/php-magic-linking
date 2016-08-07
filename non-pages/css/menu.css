@@ -95,7 +95,7 @@ nav ul ul ul li {
   position: relative;
   /*top: -@menuHeight;*/
   /*controls how far up the 2nd level down goes up (must match height of element to offset) */
-  top: -2.9em;
+  top: -3.75em;
   /*this is a manual hack to fix how far the 2nd sub-menu goes up. For somereason -@menuHeight doesn't work. (not high enough) */
   left: 10em;
   /*must match width of nav ul ul li with the @dropDownWidth var */
