@@ -1,0 +1,10 @@
+index Main site description for homepage
+portfolio Portfolio page description
+portfolio_1 Portfolio 1 description
+portfolio_2 Portfolio 2 description
+examples Examples page description
+example_1 Example 1 description
+tests Tests page description
+test_1 Test 1 description
+test_2 Test 2 description
+about About page description
