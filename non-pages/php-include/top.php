@@ -69,4 +69,16 @@
         // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
         
         
+        //Debugging section, ignore if not needed
+        $debug = false;  //Localhost says error if not define here, hope it doesn't hurt
+        if ($debug) {
+            print "<p>Domain" . $domain;
+            print "<p>php Self" . $phpSelf;
+            print "<p>Path Parts<pre>";
+            print_r($path_parts);
+            print "</pre>";
+        }
+        //end debugging
+        
+        
     ?>
