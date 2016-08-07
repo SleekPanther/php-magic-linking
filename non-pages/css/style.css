@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/*outline a few sections of the page to show differentiations */
+nav, header, #actualMainContent, footer{
+    border: 1px solid black;
+}
+
+
+.skipToContent {        /*hides something from sighted users. Position absolute removes from flow, negative left sends way off screen, top:auto=just in case left is ignored, sometimes need both */
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  display: block;
+}
+.skipToContent:focus {
+    position: static;
+}
