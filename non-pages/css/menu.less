@@ -1,0 +1,212 @@
+//colors
+@mainBackground: #10631A;
+@hoverBackground: lighten(@mainBackground, 20%);
+@hoverBackgroundMedLight: lighten(@mainBackground, 10%);
+
+//sizing variables
+@menuHeight: 3em;
+@MenuHeightCompensator: -2.9em;
+@dropDownWidth: 10em;
+@linkSpacing: 0 20px;
+
+#container {
+    margin: 0 auto;
+    max-width: 890px;
+}
+
+/*p { text-align: center; } */
+.toggle, [id^=drop] {
+    display: none;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    background-color: @mainBackground;
+}
+
+#logo {
+    //display: block;
+    //padding: 0 30px;
+    float: left;
+    font-size: 20px;
+    color: white;
+/*    line-height: 60px;*/
+    //height: @menuHeight;
+    height: @menuHeight;
+    a {
+        padding: 0;
+        height: @menuHeight;
+        line-height: 100%;
+        .logoLink {
+            display: inline-block;
+            padding: .7em 0 0 0 ;
+            font-weight: bold;
+            color: #00C7FF;
+            text-shadow: 0 0 3px black;
+        }
+    }
+    img {
+        height: @menuHeight;
+        float: left;
+    }
+}
+
+nav:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.menu {
+    z-index: 1;     /*IMPORTANT make sure menu goes on top of rest of page so dropdowns aren't hidden */
+}
+
+nav ul {
+    float: right;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+}
+
+nav ul li {
+    display: inline-block;
+    float: left;
+    background-color: @mainBackground;
+}
+
+nav a {
+    display: block;
+    padding: @linkSpacing;
+    color: #FFF;
+    font-size: 20px;
+    line-height: @menuHeight;
+/*    line-height: 60px;*/
+    text-decoration: none;
+}
+
+/* this is the color of the href="#" link that sontains a second sub-menu */
+nav ul li ul li:hover { background: @hoverBackground; }
+
+nav a:hover { background-color: @hoverBackground; }
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    /*top: @menuHeight;*/   /* controls how far down the 1st sub-menu item goes below. DONT NEED THIS?? */
+/*    top: 3em;*/ /* matches when the line-height is 2.5em */
+    /*top: 60px; */
+
+}
+
+nav ul li:hover > ul { display: inherit; }
+
+nav ul ul li {
+    width: @dropDownWidth; /*width of dropdown */
+    float: none;
+    display: list-item;
+    position: relative;
+}
+
+nav ul ul ul li {
+    position: relative;
+    /*top: -@menuHeight;*/       /*controls how far up the 2nd level down goes up (must match height of element to offset) */
+    top: @MenuHeightCompensator;        /*this is a manual hack to fix how far the 2nd sub-menu goes up. For somereason -@menuHeight doesn't work. (not high enough) */
+    left: @dropDownWidth;   /*must match width of nav ul ul li with the @dropDownWidth var */
+    margin: 0;
+    padding: 0;
+}
+
+li > a:after { content: ' +'; }
+
+li > a:only-child:after { content: ''; }
+
+
+/* Media Queries --------------------------------------------- */
+@media all and (max-width : 904px) {
+    #logo {
+        display: block;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        float: none;
+    }
+
+    nav { margin: 0; }
+
+    .toggle + a,
+    .menu { /* "menu class" is the ul that contains the links */
+        display: none;  /* not sure if this is actually necessary */
+        float: left;    /* VERY IMPORTANT! make the links ALWAYS go to left, even @ 850 px. Without this, they appear to float right on large screens */
+        width: 100%;    /* this is also extremely important. Since li inside this ul span the entire width, make the width of the ul 100% */
+    }
+
+    .toggle {
+        font-style: italic;
+        display: block;
+        background-color: @mainBackground;
+        padding: @linkSpacing;
+        color: #FFF;
+        font-size: 20px;
+        line-height: @menuHeight;
+        text-decoration: none;
+        border: none;
+    }
+    
+    /* background of  the links with sub menus */
+    .toggle:hover { background-color: @hoverBackground; }
+
+    [id^=drop]:checked + ul { display: block; }
+
+    nav ul li {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul ul .toggle,
+    nav ul ul a { padding: 0 40px; }
+
+    nav ul ul ul a { padding: 0 80px; }
+    
+    /* hover background color for top-level (excluding "menu" option"), sub1 level & sub2 (all are afected) */
+    nav a:hover,
+    nav ul ul ul a { background-color: @hoverBackground; }
+    
+    /*background of expanded submenus (not 2 layers down) */
+    nav ul li ul li .toggle,
+    nav ul ul a { background-color: @hoverBackgroundMedLight; }
+
+    nav ul ul {
+        float: none;
+        position: static;
+        color: #ffffff;
+    }
+
+    nav ul ul li:hover > ul,
+    nav ul li:hover > ul { display: none; }
+
+    nav ul ul li {
+        display: block;
+        width: 100%;
+    }
+
+    nav ul ul ul li {
+        position: static;
+    }
+}
+
+@media all and (max-width : 330px) {
+
+    nav ul li {
+        display: block;
+        width: 94%;
+    }
+
+}
+
+
+.activePage {
+    background: lighten(@mainBackground, 10%);
+    //background-image: url("../../images/0components/menu.png");
+}
