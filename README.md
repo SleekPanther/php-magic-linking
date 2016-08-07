@@ -1,18 +1,21 @@
 # PHP Magic Linking Template
 
-This PHP template allows linking to any folder or file without manually navigating up &amp; down directories with   ../
+**NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-In web design you often  store each page in a separate folder to allow more readable urls. Instead of `mySite.com/about_us_page.php`, you'd want `mySite.com/about` which means putting a page called `index.php` inside a folder called `about`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
+You often store each page in a separate folder to allow more readable urls. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc in the same folder, but it's not very organized or scalable. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. You putting an page  `index.php` in the a folder `about/`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
 
-You can have multiple subdirectories: like a main gallery page `mySite.com/gallery` with a bunch of individual galleries ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
+You can have multiple layers of sub-directories: a main gallery page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
-But the problem of linking between pages soon arises. If everything is in 1 folder, you could use **1 copy of global navigation** and use a **php include** to keep things the same on all pages. But nestes subdirectories cause problems.
+But you run into trouble linking between pages. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **php include** to keep the same navigation menu on all pages. But nested sub-directories cause problems.
+
+<s>A cheater "solution"  is to have a copy of `nav.php` for each level of directories</s><br>
+DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
 **The Situation (Problematic Linking)**
- - Going from the "homepag"e (`index.php` in the root folder of `mySite.com`) to the "about page" would be: **`href="about/"`** or `href="about/index.php"`
- - And navigating to a page 2-directories down would be: `href=gallery/indoor/`
- - Linking **from** the "homepage" would always be going **down into** directories
- - &nbsp;
+ - Going from the **homepage** (`index.php` in the root folder of `mySite.com`) to the "about page" would be **`href="about/"`** or `href="about/index.php"`
+ - Linking **2-directories** down would be **`href=gallery/indoor/`**
+ - Linking **from** the *homepage* always goes **down into** sub-directories
+ <br>
  - On the **about page**, going to the "homepage" would be: **`href="../"`** or `href="../index.php"`
  - But getting to the other gallery page would be **`href="../gallery/indoor`**
  - &nbsp;
