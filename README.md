@@ -33,9 +33,11 @@ But the problem of linking between pages soon arises. If everything is in 1 fold
 
 ##Major Features##
 
-1. Consistent nav on all pages
+1. Consistent nav on all pages (using the same `php include`)
 2. Link to any page without worring about navigating up directories <br>
 (*also applies to css stylesheets, images & any files on your site*)
+3. Automatic breadcrumb links
+4. Automatic meta descriptions via easily editable text file
 3. `<title>` Tags that match the current page
 4. Print the page name as the `<h1>` automatically (no hard-coding)
 5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
@@ -68,8 +70,6 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 ###Optional URL Features###
 
 - a
-- b
-
 
 ##Future Feature Goals##
 
@@ -88,3 +88,4 @@ https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-cs
 - dont worry about less menu file
 - list all pages (36714768356)
 - more details in php comments
+- Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections
