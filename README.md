@@ -185,10 +185,14 @@ this takes in a folder & converts it to a human readable title ([exact rules des
 - If you don't care about page descriptions, replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` with your generic description for all pages
 
 ###Easy `<title>` Tags###
-
+- `top.php` will print the human-readable Page Title (based on the containing folder)
+- Then it will append  your tagline to the end <br>
+search for `$tagLine = " - Your Tagline";` in `top.php` if you need to change the tagline
+- `<title><?php echo $pageTitle.$tagLine ; ?></title>`
 
 ###Print Automatic Page Name in `<h1>`###
-
+- Similar to `<title>` tags, you can just print the `$pageTitle` variable in an `<h1>` to start every page
+- s
 
 ###Uniqe Page ID's in `<body>` tag###
 
