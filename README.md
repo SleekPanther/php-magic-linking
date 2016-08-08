@@ -48,7 +48,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 can use css to apply styles to **target on only 1 page**
 
 ##Code Details###
-qwerty(edited to here)
+
 ###Your Folder Setup###
 - Every viewable should be called `index.php`
 - But MUST HAVE UNIQUE PARENT FOLDER<br>
@@ -67,7 +67,7 @@ qwerty(edited to here)
 - `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home** <br>
 *They're mostly placeholder pages used for breadcrumb trails*
 - `portfolio/portfolio_1/index.php` and `tests/test_1/index.php` are **1-level dropdown** pages
-- `portfolio/examples/example_1/index.php` is a *2nd-level dropdown** page
+- `portfolio/examples/example_1/index.php` is a **2nd-level dropdown** page
 - `images/` contains ALL images<br>
 There are many ways to organize your images, so modfy as you please
 - `non-pages/` contains anything that ISN'T a complete page <br>
@@ -75,25 +75,44 @@ There are many ways to organize your images, so modfy as you please
 `css/` has the stylesheets
 `descriptions/` has a tect file for Meta tag page descriptions
 
-
 ####THINGS YOU MUST EDIT!####
 - Rename `php-magic-linking` to the name of your site **(or leave it alone if you don't care)**
 - Edit line 12 in `top.php` to match **YOUR ROOT DIRECTORY** <br>
-`$ROOT_DIRECTORY = "php-magic-linking";`   (this should match, or be changed)
--asdsf
-- Every page must manually link to `top.php` <br>
-`<?php include("non-pages/php-include/top.php"); ?>` works for the **HomePage** <br>
-But for pages 1 level below the homepage folder it must be: `<?php include("../non-pages/php-include/top.php"); ?>`
-- Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
-`<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
-- list all pages (36714768356)
+`$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
+- Every page must manually link to `top.php` BEFORE ANY OTHER PHP CODE! <br>
+**HomePage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
+**1 folder Level below homepage** (from `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
+**2 Levels below** (from `/portfolio/examples/index.php`):  **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
+**3 Level below** (from `/portfolio/examples/example_1/index.php`):  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
+- &nbsp;
+- Ctrl+F/Find/Search **"36714768356"** in `top.php` (section to list all YOUR pages)
 
-####Optional things to edit####
+1. Put all top-level pages (INCLUDING $ROOT_DIRECTORY for the **Homepage**) in `$pageArrayTop` array <br>
+`$pageArrayTop = array($ROOT_DIRECTORY, 'portfolio', 'tests', 'about');` //this is the default code <br>
+Replace with **EXACT FOLDER NAMES (case sensitive)** of YOUR pages
+2. Put ALL 1st-level-dropdown pages in `$pageArrayDropDown1` array <br>
+`$pageArrayDropDown1 = array ('portfolio_1', 'portfolio_2', 'examples', 'test_1', 'test_2');` //default code
+3. Put ALL 2nd-level-dropdown pages in `$pageArrayDropDown1` array <br>
+`$pageArrayDropDown2 = array ('example_1');` //default code
+
+- ORDER DOESN'T MATTER, but don't leave out any pages!
+qwerty
+####Optional Things To Edit####
 - STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
+- Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs>` tag in `header.php` <br>
+*Leave the code in `top.php` alone just in case you want them later
+- a
+
+###Page Structure (PHP Includes)###
+Viewable pages are as follows
+
+1. `top/php` begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
+
+2. aaa
 
 ###Linking###
-
-123
+- Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
+`<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
 
 ####Linking Usage Examples####
 - **Use `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` to link to "Homepage"** instead of `<a href="index.php">Home</a>`
@@ -122,10 +141,10 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 ##Extra Notes##
 - This is a readme to demo **usage*, detailed comments in actual code
 - Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`
+- The nav menu is adapted from [Pure CSS Mobile-compatible Responsive Dropdown Menu](http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/) <br>
+or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-dropdown)
+- `non-pages/css/menu.less` can be ignored if you aren't familiar with `.less` files. Basically it's a fancy version of CSS which is compiled to normal CSS yieldind the normal `non-pages/css/menu.css` file <br>
+or check out [Less.js](http://lesscss.org/) to learn more
 
 ##Future Feature Goals##
-
-- link to menu git project <br>
-https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/ 
 - page structurte (top nav header content footer) EXPLAIN HEADER REARRANGEMENT (start of `<main>`)
-- dont worry about less menu file
