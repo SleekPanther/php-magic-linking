@@ -35,34 +35,61 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
 #[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
 
-qwerty(edited to  here)
 ##Major Features##
-
 2. **Link to any page without worring about navigating up directories <br>**
 (*also applies to css, images & any files on your site*)
 1. Consistent nav on all pages (using the same `php include`)
 3. Automatic breadcrumb links
-4. Automatic meta descriptions via easily editable text file
+4. Automatic meta descriptions stored in easily-editable text file
 3. `<title>` Tags that match the current page
-4. Print the page name as the `<h1>` automatically (no hard-coding)
+4. Print the **page name** in `<h1>` automatically (no hard-coding)
 5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
-6. Print unique ID's for each page <br>
+6. Print unique ID's for each page in `<body>` tags <br>
 can use css to apply styles to **target on only 1 page**
 
 ##Code Details###
-
-###Folder Setup###
-- Almost every actual viewable page is called `index.php` <br>
-BUT each have their own folder with unique names (**the *containing folder* is very important to identify the current page**)
+qwerty(edited to here)
+###Your Folder Setup###
+- Every viewable should be called `index.php`
+- But MUST HAVE UNIQUE PARENT FOLDER<br>
+(Since they're all called `index.php`, **the *containing folder* is very important to identify the current page**)
 - **Folder names should be lowercase NO SPACES**
+- **Folder names BECOME the** ***Page Title***
 - `-` (hyphen characters) will be replaced with `/` (forward-slashes)
-- `_` (underscores) will be replaces with spaces
-- The fitst letter of each word will be capitalized
+- `_` (underscores) will be replaces with **spaces**
+- The **fitst letter** of each word will be ***C*****apitalized**
+
+**Example:** The folder "our_prices-services" becomes "Our Prices / Services"
+
+###This Project's Default Folder Setup (what files go where)###
+- The **main homepage** goes in the root directory of your entire project
+- `about/index.php` gets its own folder since it's on the same level of the nav as **Home**
+- `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home** <br>
+*They're mostly placeholder pages used for breadcrumb trails*
+- `portfolio/portfolio_1/index.php` and `tests/test_1/index.php` are **1-level dropdown** pages
+- `portfolio/examples/example_1/index.php` is a *2nd-level dropdown** page
+- `images/` contains ALL images<br>
+There are many ways to organize your images, so modfy as you please
+- `non-pages/` contains anything that ISN'T a complete page <br>
+`php-include/` has partial components that are assembled to create complete pages
+`css/` has the stylesheets
+`descriptions/` has a tect file for Meta tag page descriptions
+
 - Every page must manually link to `top.php` <br>
 `<?php include("non-pages/php-include/top.php"); ?>` works for the **HomePage** <br>
 But for pages 1 level below the homepage folder it must be: `<?php include("../non-pages/php-include/top.php"); ?>`
 - Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
 `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
+- list all pages (36714768356)
+
+####THINGS YOU MUST EDIT!####
+- Rename `php-magic-linking` to the name of your site **(or leave it alone if you don't care)**
+- Edit line 12 in `top.php` to match **YOUR ROOT DIRECTORY** <br>
+`$ROOT_DIRECTORY = "php-magic-linking";`   (this should match, or be changed)
+- 
+
+####Optional things to edit####
+- STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
 
 ###Linking###
 
@@ -92,6 +119,9 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 ###Uniqe Page ID's in `<body>` tag###
 
 
+##Extra Notes##
+- This is a readme to demo **usage*, detailed comments in actual code
+- Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`
 
 ##Future Feature Goals##
 
@@ -99,6 +129,3 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/ 
 - page structurte (top nav header content footer) EXPLAIN HEADER REARRANGEMENT (start of `<main>`)
 - dont worry about less menu file
-- list all pages (36714768356)
-- Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections
-- STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
