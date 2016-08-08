@@ -109,14 +109,20 @@ This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at
 - Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs>` tag in `header.php` <br>
 *Leave the code in `top.php` alone just in case you want them later
 - Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
-(You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SETION&#8659;](#meta-tag-page-descriptions))
+(You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SETION &#8659;](#meta-tag-page-descriptions))
 
 ###Page Structure (PHP Includes)###
-Viewable pages are as follows
+Viewable pages constructed from partials in `non-pages/php-include/` as follows:
 
-1. `top/php` begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
-
-2. aaa
+1. **`top/php`** begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
+It uses 2 php includes at the end to render `nav.php`and `header.php`
+2. **`nav.php`** contains global navigation (1 copy for all pages)
+3. **`header.php`** can contain a Global logo, site title, slideshow etc. <br>
+CURRENTLY IT ALSO CONTAINS **Breadcrumbs** <br>
+`<main id="actualMainContent">` at the very end opens a tag to contain the main page content
+4. Then there's the unique page content (e.g. homepage, about, etc.) <br>
+Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
+5. **`footer.php`** is for any content you want at the bottom of every page
 
 ###Linking###
 - Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
