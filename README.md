@@ -125,12 +125,15 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 5. **`footer.php`** is for any content you want at the bottom of every page
 
 ###Linking###
-- Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
-`<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
-
-####Linking Usage Examples####
-- **Use `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` to link to "Homepage"** instead of `<a href="index.php">Home</a>`
-- 9099
+- Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
+- Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`
+- &nbsp;
+- **Examples**
+- **Navigation Links:** `<a href="<?php echo $upFolderPlaceholder ?>index.php">Home</a>`
+- **CSS:** `<link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />`
+- **Images:** `<img src="<?php echo $upFolderPlaceholder;?>images/logo/logo.png" alt="Your Logo">`
+- **PHP Includes:** `<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
+*(this uses `.` to concatenate 2 things & create a complete URL path)*
 
 ###Breadcrumb Links###
 
