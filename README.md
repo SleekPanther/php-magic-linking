@@ -124,6 +124,9 @@ CURRENTLY IT ALSO CONTAINS **Breadcrumbs** <br>
 Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
 5. **`footer.php`** is for any content you want at the bottom of every page
 
+- **Feel free to rearrange the `php inclusdes` but make sure the tags are nested correctly (like opening `<main>` in `header.php`)**
+- **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->`
+
 ###Linking###
 - Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
 - Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`
@@ -156,12 +159,30 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 *currently accomplished in last lines of* **`non-pages/css/menu.css`**
 
 ###Breadcrumb Trail Links###
+- Located in `non-pages/php-include/header.php`
+- Just remove the php code in the `header.php` file if you don't want them, or move it to another place
+- Uses `$split_url_adjusted` array
 
-
+1. Breaks aprt the URL into folders
+2. Starts at the beginnins & prints an href link to each folder
+3. The actual text of the link is found by the function `convFolder2PgTitle()` <br>
+this takes in a folder & converts it to a human readable title ([exact rules described earlier &#8648;](#your-folder-setup))
+4. The final "crumb" in the chain is the current page. This is **bolded** BUT NOT A LINK!
 
 ###Meta Tag Page Descriptions###
+- These are `<meta name="description" content="your description here">` tags for **search engines**
+- **These are based on ** `$pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2` etc.
+- **SO MAKE SURE YOU ADDED ALL YOUR PAGES TO THESE ARRAYS**
+- As long as your pages are in these arrays, you just need to edit the text file
 
+`non-pages/descriptions/descriptions.txt` is very simple:
 
+1. Each line contains 1 page description
+2. The 1st word is the **exact folder name**
+3. Everything **after the 1st space** is considered the description
+4. So anything AFTER the 1st word will replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` in `<meta name="description" content="<?php echo $pageMeteDescriptions[$containing_folder] ?>">` inn the `top.php` file
+
+- If you don't care about page descriptions, replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` with your generic description for all pages
 
 ###Easy `<title>` Tags###
 
