@@ -35,7 +35,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
 #[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
 
-##Major Features##
+##Major Features (click link to jump to section)##
 1. **[Link to any page](#linking) without worring about navigating up directories <br>**
 (*also applies to css, images & any files on your site*)
 2. [Consistent nav](#consistent-navigation-navphp) on all pages (using the same `php include`)
@@ -198,10 +198,26 @@ This is the whole reason for the `$pageTitle` variable existing
 - This is from 1 of the `index.php` pages, but you choose to add it to `header.php` or move it elsewhere
 
 ###Uniqe Page ID's in `<body>` tag###
+- Ever need to apply a css rule to **just 1 specific page**?
+- It's easily accomplished with an **ID** in the `<body>` tag
+- Since all pages are called `index.php` you can't target filenames
+- But since every page is in its **own unique folder**, you **use `$containing_folder` as the ID**
+- `echo '<body id="'.$containing_folder.'">';`
+- **The `$containing_folder` for `$ROOT_DIRECTORY` has been adjusted to be `"index"`** <br>
+This is to allow easy migration of the site. Nothing relie directly on the value of $ROOT_DIRECTORY, we always access it via the variable so it can easily be changed
+- ID's have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
+```
+#portfolio_1 /*optionally add more CSS selectors here */ {
+  /*new css rules here*/
+}
 
+#index {
+  /*CSS rules to override stuff for the HOMEPAGE only*/
+}
+```
 
 ##Extra Notes##
-- This is a readme to demo **usage*, detailed comments in actual code
+- This is a readme to demo **usage**, detailed comments in actual code
 - Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`
 - The nav menu is adapted from [Pure CSS Mobile-compatible Responsive Dropdown Menu](http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/) <br>
 or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-dropdown)
@@ -209,3 +225,4 @@ or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-
 or check out [Less.js](http://lesscss.org/) to learn more
 
 ##Future Feature Goals##
+<!--<br><br><br><br><br><br><br>-->
