@@ -38,9 +38,9 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 qwerty(edited to  here)
 ##Major Features##
 
+2. **Link to any page without worring about navigating up directories <br>**
+(*also applies to css, images & any files on your site*)
 1. Consistent nav on all pages (using the same `php include`)
-2. Link to any page without worring about navigating up directories <br>
-(*also applies to css stylesheets, images & any files on your site*)
 3. Automatic breadcrumb links
 4. Automatic meta descriptions via easily editable text file
 3. `<title>` Tags that match the current page
@@ -51,6 +51,7 @@ can use css to apply styles to **target on only 1 page**
 
 ##Code Details###
 
+###Folder Setup###
 - Almost every actual viewable page is called `index.php` <br>
 BUT each have their own folder with unique names (**the *containing folder* is very important to identify the current page**)
 - **Folder names should be lowercase NO SPACES**
@@ -67,31 +68,37 @@ But for pages 1 level below the homepage folder it must be: `<?php include("../n
 
 123
 
-###Linking Usage Examples###
-
+####Linking Usage Examples####
 - **Use `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` to link to "Homepage"** instead of `<a href="index.php">Home</a>`
 - 9099
 
-###Optional URL Features###
+###Breadcrumb Links###
 
-- a
+
+
+###Meta Tag Page Descriptions###
+
+
+
+###Highlight Current Page in Nav###
+
+
+###Easy `<title>` Tags###
+
+
+###Print Automatic Page Name in `<h>`###
+
+
+###Uniqe Page ID's in `<body>` tag###
+
+
 
 ##Future Feature Goals##
 
-- del meta name, desc
-- Printing Breadcrumbs (separateed by >, current page=bold, maybe just use "page name" variable & print containing folders, MUST HAVE INDEX PAGE IN ALL FOLDERS )
-- current page activePage class explain
-- fewer pages (home, portfolio, test, about)
-- remove most css
 - link to menu git project <br>
 https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/ 
-- less css, no bother mobile friendly
-- css border on header, <nav, footer
-- test boring page with section outlines (**line above**), lipsum paragraphs 
-- -meta desccriptions addition
 - page structurte (top nav header content footer) EXPLAIN HEADER REARRANGEMENT (start of `<main>`)
 - dont worry about less menu file
 - list all pages (36714768356)
-- more details in php comments
 - Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections
 - STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
