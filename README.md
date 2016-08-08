@@ -202,10 +202,11 @@ This is the whole reason for the `$pageTitle` variable existing
 - It's easily accomplished with an **ID** in the `<body>` tag
 - Since all pages are called `index.php` you can't target filenames
 - But since every page is in its **own unique folder**, you **use `$containing_folder` as the ID**
-- `echo '<body id="'.$containing_folder.'">';`
+- `echo '<body id="'.$containing_folder.'">';` (this is from the end of `top.php`)
 - **The `$containing_folder` for `$ROOT_DIRECTORY` has been adjusted to be `"index"`** <br>
 This is to allow easy migration of the site. Nothing relie directly on the value of $ROOT_DIRECTORY, we always access it via the variable so it can easily be changed
 - ID's have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
+- `echo '<body id="'.$containing_folder.'">';` in `top.php` would become `<body id="portfolio_1">`
 ```
 #portfolio_1 /*optionally add more CSS selectors here */ {
   /*new css rules here*/
@@ -225,4 +226,3 @@ or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-
 or check out [Less.js](http://lesscss.org/) to learn more
 
 ##Future Feature Goals##
-<!--<br><br><br><br><br><br><br>-->
