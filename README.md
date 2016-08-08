@@ -94,3 +94,4 @@ https://github.com/SleekPanther/css-dropdown    http://www.cssscript.com/pure-cs
 - list all pages (36714768356)
 - more details in php comments
 - Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections
+- STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
