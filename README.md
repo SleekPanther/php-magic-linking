@@ -39,11 +39,11 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 2. **Link to any page without worring about navigating up directories <br>**
 (*also applies to css, images & any files on your site*)
 1. Consistent nav on all pages (using the same `php include`)
+5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
 3. Automatic breadcrumb links
 4. Automatic meta descriptions stored in easily-editable text file
 3. `<title>` Tags that match the current page
 4. Print the **page name** in `<h1>` automatically (no hard-coding)
-5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
 6. Print unique ID's for each page in `<body>` tags <br>
 can use css to apply styles to **target on only 1 page**
 
@@ -134,6 +134,9 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 - **Images:** `<img src="<?php echo $upFolderPlaceholder;?>images/logo/logo.png" alt="Your Logo">`
 - **PHP Includes:** `<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
 *(this uses `.` to concatenate 2 things & create a complete URL path)*
+
+###Consistent Navigation (`nav.php`)###
+
 
 ###Breadcrumb Links###
 
