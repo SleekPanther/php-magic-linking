@@ -136,11 +136,24 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 *(this uses `.` to concatenate 2 things & create a complete URL path)*
 
 ###Consistent Navigation (`nav.php`)###
-
-
+- Anatomy of a link:
+- `<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"' . ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a></li>`
+- `<a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"'` is the part that prints the `href` for the hyperlink
+- `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` finishes the link & check if it's an **active Page** (*DETAILS IN NEXT SECTION*)
+- REMOVE THIS 2ND PART IF YOU DON'T CARE ABOUT **Active Pages** <br>
+- The boring link would just be ``<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php">Portfolio 1</a></li>``
+- MUST HAVE UNIQUE ID'S FOR EACH DROPDOWN <br>
+**drop-2** in `<label for="drop-2" class="toggle">Portfolio +</label>` matches **drop-2** in `<input type="checkbox" id="drop-2"/>`
 
 ###Highlight Current Page in Nav###
-
+- `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` (this is the 2nd part of the LINK FROM JUST ABOVE)
+- It will yield `class="activePage"` **if the folder in the nav matches a folder in the CURRENT URL**
+- `$activePageArrayDropDown1` is created in `top.php`
+- It's an associative array with **keys* matching the *drop-down 1 level folders*
+- Its **values** should be empty, expect for 1 kay which will have **activePage** stored in it
+- If **Portfolio 1* is in the path in the URL (really the `portfolio_1` folder ), `$activePageArrayDropDown1['portfolio_1']` will have the value **activePage** stored in it
+- **Use CSS to taget the `activePage` class & style the background differently** <br>
+*currently accomplished in last lines of* **`non-pages/css/menu.css`**
 
 ###Breadcrumb Trail Links###
 
