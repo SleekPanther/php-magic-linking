@@ -17,7 +17,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
  - Linking **from the** ***homepage*** always goes **down into** sub-directories
  - &nbsp;
  - **From the** ***About Page*** back up **to the** ***homepage*** would be: **`href="../"`** or `href="../index.php"`
-  - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
+ - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
  - &nbsp;
  - And **from the** ***Indoor galley*** all the way **to the** ***About Page*** would be `href="../../about/"`
  - &nbsp;
