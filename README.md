@@ -192,7 +192,10 @@ search for `$tagLine = " - Your Tagline";` in `top.php` if you need to change th
 
 ###Print Automatic Page Name in `<h1>`###
 - Similar to `<title>` tags, you can just print the `$pageTitle` variable in an `<h1>` to start every page
-- s
+- It's a good practice to have the `<title>` text & prominent `<h1>` match. This is for search engine as well as sie users <br>
+This is the whole reason for the `$pageTitle` variable existing
+- `<h1><?php echo $pageTitle . $tagLine; ?></h1>`
+- This is from 1 of the `index.php` pages, but you choose to add it to `header.php` or move it elsewhere
 
 ###Uniqe Page ID's in `<body>` tag###
 
