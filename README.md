@@ -96,12 +96,20 @@ Replace with **EXACT FOLDER NAMES (case sensitive)** of YOUR pages
 `$pageArrayDropDown2 = array ('example_1');` //default code
 
 - ORDER DOESN'T MATTER, but don't leave out any pages!
-qwerty
-####Optional Things To Edit####
-- STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
+
+####More Optional Things To Edit####
+- Choose your Favicon `images/0_components/favicon.png` <br>
+`<link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">` in `top.php`
+- Change your logo `images/logo/logo.png` <br>
+Search for `<div id="logo">` in `nav.php`
+- Update `<meta name="author" content="Your Name">` to your name/company in `top.php`
+- Add your site's tagline<br>
+`$tagLine = " - Your Tagline";` in `top.php`
+This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
 - Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs>` tag in `header.php` <br>
 *Leave the code in `top.php` alone just in case you want them later
-- a
+- Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
+(You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SETION&#8659;](#meta-tag-page-descriptions))
 
 ###Page Structure (PHP Includes)###
 Viewable pages are as follows
