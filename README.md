@@ -140,7 +140,7 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 
 ###Breadcrumb Links###
 
-
+###Breadcrumb Links###
 
 ###Meta Tag Page Descriptions###
 
