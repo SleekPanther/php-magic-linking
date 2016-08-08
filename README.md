@@ -70,7 +70,7 @@ qwerty(edited to here)
 - `portfolio/examples/example_1/index.php` is a *2nd-level dropdown** page
 - `images/` contains ALL images<br>
 There are many ways to organize your images, so modfy as you please
-- aa`non-pages/` contains anything that ISN'T a complete page <br>
+- `non-pages/` contains anything that ISN'T a complete page <br>
 `php-include/` has partial components that are assembled to create complete pages
 `css/` has the stylesheets
 `descriptions/` has a tect file for Meta tag page descriptions
