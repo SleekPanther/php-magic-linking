@@ -70,23 +70,23 @@ qwerty(edited to here)
 - `portfolio/examples/example_1/index.php` is a *2nd-level dropdown** page
 - `images/` contains ALL images<br>
 There are many ways to organize your images, so modfy as you please
-- `non-pages/` contains anything that ISN'T a complete page <br>
+- aa`non-pages/` contains anything that ISN'T a complete page <br>
 `php-include/` has partial components that are assembled to create complete pages
 `css/` has the stylesheets
 `descriptions/` has a tect file for Meta tag page descriptions
 
+
+####THINGS YOU MUST EDIT!####
+- Rename `php-magic-linking` to the name of your site **(or leave it alone if you don't care)**
+- Edit line 12 in `top.php` to match **YOUR ROOT DIRECTORY** <br>
+`$ROOT_DIRECTORY = "php-magic-linking";`   (this should match, or be changed)
+-asdsf
 - Every page must manually link to `top.php` <br>
 `<?php include("non-pages/php-include/top.php"); ?>` works for the **HomePage** <br>
 But for pages 1 level below the homepage folder it must be: `<?php include("../non-pages/php-include/top.php"); ?>`
 - Now subsequent PHP Includes can use `$upFolderPlaceHolder` to take care of how many times to prepend `../` to the link. <br>
 `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
 - list all pages (36714768356)
-
-####THINGS YOU MUST EDIT!####
-- Rename `php-magic-linking` to the name of your site **(or leave it alone if you don't care)**
-- Edit line 12 in `top.php` to match **YOUR ROOT DIRECTORY** <br>
-`$ROOT_DIRECTORY = "php-magic-linking";`   (this should match, or be changed)
-- 
 
 ####Optional things to edit####
 - STUFF 2 EDIT (favicon, logo, meta author, descriptions, tagline, )
