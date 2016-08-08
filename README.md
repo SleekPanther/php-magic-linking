@@ -36,15 +36,15 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 #[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
 
 ##Major Features##
-2. **Link to any page without worring about navigating up directories <br>**
+1. **[Link to any page](#linking) without worring about navigating up directories <br>**
 (*also applies to css, images & any files on your site*)
-1. Consistent nav on all pages (using the same `php include`)
-5. Identify the current page & highlight the current link in nav (so the user knows where they are in the site)
-3. Automatic breadcrumb links
-4. Automatic meta descriptions stored in easily-editable text file
-3. `<title>` Tags that match the current page
-4. Print the **page name** in `<h1>` automatically (no hard-coding)
-6. Print unique ID's for each page in `<body>` tags <br>
+2. [Consistent nav](#consistent-navigation-navphp) on all pages (using the same `php include`)
+3. [Identify the current page](#highlight-current-page-in-nav) & highlight the current link in nav (so the user knows where they are in the site)
+4. [Automatic breadcrumb links](#breadcrumb-trail-links)
+5. [Automatic meta descriptions](#meta-tag-page-descriptions) stored in easily-editable text file
+6. [`<title>` Tags that match the current page](#easy-title-tags)
+7. [Print the **page name** in `<h1>`](#print-automatic-page-name-in-h1) automatically (no hard-coding)
+8. [Print unique ID's for each page in `<body>` tags](#uniqe-page-ids-in-body-tag) <br>
 can use css to apply styles to **target on only 1 page**
 
 ##Code Details###
@@ -153,7 +153,7 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 ###Easy `<title>` Tags###
 
 
-###Print Automatic Page Name in `<h>`###
+###Print Automatic Page Name in `<h1>`###
 
 
 ###Uniqe Page ID's in `<body>` tag###
