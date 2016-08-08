@@ -96,6 +96,7 @@
         //-----MUST EDIT THIS (ctrl+F & search for  36714768356 ---------------------------------
         //YOU MUST LIST ALL THE PAGES ON THE SITE! But $pageArrayDropDown1 means anything that's in a 1st level dropdown. You DON'T have to organize them into sepatate arrays for each individual dropdown, just put pages that are the same distance down from the $ROOT_DIRECTORY in appropriate arrays.
         //THIS ALSO MEANS PUT $ROOT_DIRECTORY IN $pageArrayTop EVEN THOUGH IT'S NOT 1-LEVEL DOWN FROM ITSELF, IT'S ON THE SAME LEVEL OF THE NAV
+        //unused keys are OK, but pages that AREN'T in these arrays aren't so good
         $pageArrayTop = array($ROOT_DIRECTORY, 'portfolio', 'tests', 'about');   //make a list of the ALL pages
         $pageArrayDropDown1 = array ('portfolio_1', 'portfolio_2', 'examples', 'test_1', 'test_2');     //1st level of dropdown
         $pageArrayDropDown2 = array ('example_1');
