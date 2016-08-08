@@ -138,15 +138,16 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 ###Consistent Navigation (`nav.php`)###
 
 
-###Breadcrumb Links###
 
-###Breadcrumb Links###
+###Highlight Current Page in Nav###
+
+
+###Breadcrumb Trail Links###
+
+
 
 ###Meta Tag Page Descriptions###
 
-
-
-###Highlight Current Page in Nav###
 
 
 ###Easy `<title>` Tags###
@@ -167,4 +168,3 @@ or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-
 or check out [Less.js](http://lesscss.org/) to learn more
 
 ##Future Feature Goals##
-- page structurte (top nav header content footer) EXPLAIN HEADER REARRANGEMENT (start of `<main>`)
