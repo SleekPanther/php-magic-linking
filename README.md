@@ -118,7 +118,7 @@ Viewable pages constructed from partials in `non-pages/php-include/` as follows:
 It uses 2 php includes at the end to render `nav.php`and `header.php`
 2. **`nav.php`** contains global navigation (1 copy for all pages)
 3. **`header.php`** can contain a Global logo, site title, slideshow etc. <br>
-CURRENTLY IT ALSO CONTAINS **Breadcrumbs** <br>
+CURRENTLY IT ALSO CONTAINS **Breadcrumbs**. [See details to remove them &#8659;](#breadcrumb-trail-links) <br>
 `<main id="actualMainContent">` at the very end opens a tag to contain the main page content
 4. Then there's the unique page content (e.g. homepage, about, etc.) <br>
 Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
@@ -160,13 +160,18 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 
 ###Breadcrumb Trail Links###
 - Located in `non-pages/php-include/header.php`
-- Just remove the php code in the `header.php` file if you don't want them, or move it to another place
+- Prints breadcrumbs to show how to user got to the current page (breadcrumbs explained)[https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/]
+- **None appear on the** ***Homepage*** <br>
+I mean, what's the point. It's the highest level page
+- If you don't want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">` in `header.php`
+- Or move that code anywhere else to display **breadcrumbs** in a different location on the page
+- **I recommend keeping them in a `php include`** That way you only have to change 1 file (like `header.php`) to adjust the links
 - Uses `$split_url_adjusted` array
 
-1. Breaks aprt the URL into folders
-2. Starts at the beginnins & prints an href link to each folder
-3. The actual text of the link is found by the function `convFolder2PgTitle()` <br>
-this takes in a folder & converts it to a human readable title ([exact rules described earlier &#8648;](#your-folder-setup))
+1. Breaks apart the URL into folders
+2. Starts at the beginning & prints an `href` link to each folder
+3. Actual link text is found by calling the function `convFolder2PgTitle()` <br>
+this converts a folder like `portfolio_1` to a human readable title like **Portfolio 1** ([exact rules described earlier &#8648;](#your-folder-setup))
 4. The final "crumb" in the chain is the current page. This is **bolded** BUT NOT A LINK!
 
 ###Meta Tag Page Descriptions###
