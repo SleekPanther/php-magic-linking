@@ -40,7 +40,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 (*also applies to css, images & any files on your site*)
 2. [Consistent nav](#consistent-navigation-navphp) on all pages (using the same `php include`)
 3. [Identify the current page](#highlight-current-page-in-nav) & highlight the current link in nav (so the user knows where they are in the site)
-4. [Automatic breadcrumb links](#breadcrumb-trail-links)
+4. [Automatic **Breadcrumb** links](#breadcrumb-trail-links)
 5. [Automatic meta descriptions](#meta-tag-page-descriptions) stored in easily-editable text file
 6. [`<title>` Tags that match the current page](#easy-title-tags)
 7. [Print the **page name** in `<h1>`](#print-automatic-page-name-in-h1) automatically (no hard-coding)
@@ -160,7 +160,7 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 
 ###Breadcrumb Trail Links###
 - Located in `non-pages/php-include/header.php`
-- Prints breadcrumbs to show how to user got to the current page (breadcrumbs explained)[https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/]
+- Prints breadcrumbs to show how to user got to the current page [breadcrumbs explained](https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/)
 - **None appear on the** ***Homepage*** <br>
 I mean, what's the point. It's the highest level page
 - If you don't want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">` in `header.php`
