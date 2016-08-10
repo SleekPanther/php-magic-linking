@@ -174,15 +174,17 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
     background: #178f26;
 }
 ```
+- `non-pages/css/menu.less` can be ignored if you aren't familiar with `.less` files. Basically it's a fancy version of CSS which is compiled to normal CSS yielding the normal `non-pages/css/menu.css` file <br>
+or check out [Less.js](http://lesscss.org/) to learn more
 
 ###Breadcrumb Trail Links###
 - Located in `non-pages/php-include/header.php`
-- Prints breadcrumbs to show how to user got to the current page [breadcrumbs explained](https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/)
+- Prints **breadcrumb**s to show how to user got to the current page [(breadcrumbs explained)](https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/)
 - **None appear on the** ***Homepage*** <br>
-I mean, what's the point. It's the highest level page
-- If you don't want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">` in `header.php`
+(I mean, what's the point. It's the highest level page)
+- If you **don't** want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">` in `header.php`
 - Or move that code anywhere else to display **breadcrumbs** in a different location on the page
-- **I recommend keeping them in a `php include`** That way you only have to change 1 file (like `header.php`) to adjust the links
+- **I recommend keeping `<section class="breadcrumbs"> in some type of `php include`** That way you only have to change 1 file (like `header.php`) to modify links in the future
 - Uses `$split_url_adjusted` array
 
 1. Breaks apart the URL into folders
@@ -193,42 +195,43 @@ this converts a folder like `portfolio_1` to a human readable title like **Portf
 
 ###Meta Tag Page Descriptions###
 - These are `<meta name="description" content="your description here">` tags for **search engines**
-- **These are based on ** `$pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2` etc.
+- **Based on** `$pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2` etc.
 - **SO MAKE SURE YOU ADDED ALL YOUR PAGES TO THESE ARRAYS**
 - As long as your pages are in these arrays, you just need to edit the text file
 
 `non-pages/descriptions/descriptions.txt` is very simple:
 
-1. Each line contains 1 page description
+1. Each line contains **1 page description**
 2. The 1st word is the **exact folder name**
-3. Everything **after the 1st space** is considered the description
+3. Everything **AFTER the 1st space** is the description
 4. So anything AFTER the 1st word will replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` in `<meta name="description" content="<?php echo $pageMeteDescriptions[$containing_folder] ?>">` in the `top.php` file
 
-- If you don't care about page descriptions, replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` with your generic description for all pages
+- If you don't care about page descriptions, replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` with your generic description for all pages.
+- Like this: `<meta name="description" content="My awesome site description ...">`
 
 ###Easy `<title>` Tags###
 - `top.php` will print the human-readable Page Title (based on the containing folder)
-- Then it will append  your tagline to the end <br>
+- Then it will append your tagline to the end <br>
 search for `$tagLine = " - Your Tagline";` in `top.php` if you need to change the tagline
-- `<title><?php echo $pageTitle.$tagLine ; ?></title>`
+- `<title><?php echo $pageTitle.$tagLine ; ?></title>` actually prints it
 
 ###Print Automatic Page Name in `<h1>`###
 - Similar to `<title>` tags, you can just print the `$pageTitle` variable in an `<h1>` to start every page
-- It's a good practice to have the `<title>` text & prominent `<h1>` match. This is for search engine as well as sie users <br>
-This is the whole reason for the `$pageTitle` variable existing
+- It's a good practice for `<title>` text & `<h1>` for the Page Title to match. This is for search engine as well as sie users <br>
+*This is the whole reason for the `$pageTitle` variable existing*
 - `<h1><?php echo $pageTitle . $tagLine; ?></h1>`
 - This is from 1 of the `index.php` pages, but you choose to add it to `header.php` or move it elsewhere
 
 ###Unique Page IDs in `<body>` tag###
 - Ever need to apply a css rule to **just 1 specific page**?
 - It's easily accomplished with an **ID** in the `<body>` tag
-- Since all pages are called `index.php` you can't target filenames
+- Since all pages are called `index.php` you can't use filenames
 - But since every page is in its **own unique folder**, you **use `$containing_folder` as the ID**
-- `echo '<body id="'.$containing_folder.'">';` (this is from the end of `top.php`)
-- **The `$containing_folder` for `$ROOT_DIRECTORY` has been adjusted to be `"index"`** <br>
+- `echo '<body id="'.$containing_folder.'">';` (from the end of `top.php`)
+- **The `$containing_folder` for `$ROOT_DIRECTORY` (the *Homepage*) has been adjusted to `"index"`** <br>
 This is to allow easy migration of the site. Nothing relies directly on the value of $ROOT_DIRECTORY, we always access it via the variable so it can easily be changed
 - IDs have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
-- `echo '<body id="'.$containing_folder.'">';` in `top.php` would become `<body id="portfolio_1">`
+- `echo '<body id="'.$containing_folder.'">';` in `top.php` will become `<body id="portfolio_1">`
 ```
 #portfolio_1 /*optionally add more CSS selectors here */ {
   /*new css rules here*/
@@ -240,11 +243,9 @@ This is to allow easy migration of the site. Nothing relies directly on the valu
 ```
 
 ##Extra Notes##
-- This is a readme to demo **usage**, detailed comments in actual code
-- Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`
+- This is a readme to demo **usage**, more detailed comments in actual code
+- **Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`**
 - The nav menu is adapted from [Pure CSS Mobile-compatible Responsive Dropdown Menu](http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/) <br>
 or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-dropdown)
-- `non-pages/css/menu.less` can be ignored if you aren't familiar with `.less` files. Basically it's a fancy version of CSS which is compiled to normal CSS yielding the normal `non-pages/css/menu.css` file <br>
-or check out [Less.js](http://lesscss.org/) to learn more
 
 ##Future Feature Goals##
