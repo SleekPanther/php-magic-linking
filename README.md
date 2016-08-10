@@ -83,37 +83,37 @@ There are many ways to organize your images, so modify as you please
 `$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
 - Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
 **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
-**1st-level dropdown** (from `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
-**2 Levels below** (from `/portfolio/examples/index.php`):  **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
-**3 Level below** (from `/portfolio/examples/example_1/index.php`):  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
+**1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
+**2 Levels below** (e.g. `/portfolio/examples/index.php`):  **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
+**3 Level below** (e.g. `/portfolio/examples/example_1/index.php`):  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
 - &nbsp;
 - Ctrl+F/Find/Search **"36714768356"** in `top.php` (section to list all YOUR pages)
 
-1. Put all top-level pages (INCLUDING $ROOT_DIRECTORY for the **Homepage**) in `$pageArrayTop` array <br>
+1. Put all top-level pages (including $ROOT_DIRECTORY for **Homepage**) in `$pageArrayTop` array <br>
 `$pageArrayTop = array($ROOT_DIRECTORY, 'portfolio', 'tests', 'about');` //this is the default code <br>
-Replace with **EXACT FOLDER NAMES (case sensitive)** of YOUR pages
+Replace with your pages, **EXACT FOLDER NAMES (case sensitive)**
 2. Put ALL 1st-level-dropdown pages in `$pageArrayDropDown1` array <br>
 `$pageArrayDropDown1 = array ('portfolio_1', 'portfolio_2', 'examples', 'test_1', 'test_2');` //default code
 3. Put ALL 2nd-level-dropdown pages in `$pageArrayDropDown1` array <br>
 `$pageArrayDropDown2 = array ('example_1');` //default code
 
-- ORDER DOESN'T MATTER, but don't leave out any pages!
+- ORDER DOESN'T MATTER, but **don't leave out any pages!**
 
 ####More Optional Things To Edit####
-- Choose your Favicon `images/0_components/favicon.png` <br>
+- Replace default  Favicon `images/0_components/favicon.png` <br>
 `<link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">` in `top.php`
-- Change your logo `images/logo/logo.png` <br>
-Search for `<div id="logo">` in `nav.php`
+- Replace default logo `images/logo/logo.png` <br>
+Search for `<div id="logo">` in `nav.php` to see where it's used
 - Update `<meta name="author" content="Your Name">` to your name/company in `top.php`
 - Add your site's tagline<br>
 `$tagLine = " - Your Tagline";` in `top.php`
 This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
 - Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs>` tag in `header.php` <br>
-*Leave the code in `top.php` alone just in case you want them later
+*Leave the code in `top.php` alone just in case you want them later*
 - Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
 (You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SECTION &#8659;](#meta-tag-page-descriptions))
 
-###Page Structure (PHP Includes)###
+###Page Structure (Anatomy of a Page, PHP Includes)###
 Viewable pages constructed from partials in `non-pages/php-include/` as follows:
 
 1. **`top/php`** begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
