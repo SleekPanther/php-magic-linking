@@ -2,62 +2,63 @@
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-You often store each page in a separate folder to allow more readable urls. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc in the same folder, but it's not very organized or scalable. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. You putting an page  `index.php` in the a folder `about/`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
+You often store each page in a separate folder to allow more readable URLs. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc. in the same folder, but it's not very organized or scalable. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. So put an `index.php` in the folder `about/`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
 
 You can have multiple layers of sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
-But you run into trouble linking between pages. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the same navigation menu on all pages. But nested sub-directories cause problems.
+But you run into trouble **linking between pages**. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the same menu on all pages. But nested sub-directories cause problems.
 
 <s>A cheater "solution"  is to have a copy of `nav.php` for each level of directories</s><br>
 DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
 ###The Situation (Problematic Linking)###
- - Going **from the** ***Homepage*** (`index.php` in the root folder of `mySite.com`) **to the** ***About Page***  would be **`href="about/"`** or `href="about/index.php"`
- - Linking **2-directories** down would be **`href=gallery/indoor/`**
- - Linking **from the** ***homepage*** always goes **down into** sub-directories
+ - Going **from the** ***Homepage*** (`index.php` in the root folder of `mySite.com`) **to** ***About***  would be **`href="about/"`** or `href="about/index.php"`
+ - Linking **2-directories down** would be **`href=gallery/indoor/`**
+ - Linking **from the** ***Homepage*** always goes **down into** sub-directories, so **no `../` are needed**
  - &nbsp;
- - **From the** ***About Page*** back up **to the** ***homepage*** would be: **`href="../"`** or `href="../index.php"`
+ - **From the** ***About Page*** back up **to the** ***homepage*** would be **`href="../"`** or `href="../index.php"`
  - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
  - &nbsp;
- - And **from the** ***Indoor galley*** all the way **to the** ***About Page*** would be `href="../../about/"`
- - &nbsp;
+ - And **from the** ***Indoor galley*** all the way **to** ***About*** would be `href="../../about/"`
  - &nbsp;
  - **3 different links to the same galley page is no good!**
- <br>All based on where the folders are in relationship to each other
+ <br>All based on where the folders are relative to each other
 
 ##The Solution##
-- **Act as if all links start in the root folder**
-- This code analyzes the URL to find how many folders below the **root directory** the current page is
+- **Act as if all links start in the root folder (where the** ***Homepage*** **is)**
+- This code analyzes the URL to find how many folders **below the root directory** the current page is
 - **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
-<br>This manual link **from** ***About*** **to** ***Home*** `<a href="index.php">Home</a>`
+<br>The manual link **from** ***About*** **to** ***Home*** `<a href="index.php">Home</a>`
 <br>**Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
-- Code in `top.php` magically prints the correct number or `../` in your link, making wherever the file is located
+- Code in `top.php` magically prints the correct number of `../` in your link
 
 #[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
 
 ##Major Features (click link to jump to section)##
-1. **[Link to any page](#linking) without worrying about navigating up directories <br>**
+1. **[Link to any page](#linking) without using `../` EVER AGAIN! <br>**
 (*also applies to css, images & any files on your site*)
 2. [Consistent nav](#consistent-navigation-navphp) on all pages (using the same `php include`)
-3. [Identify the **current page**](#highlight-current-page-in-nav) & highlight the current link in nav (so the user knows where they are in the site)
+3. [Identify the **current page**](#highlight-current-page-in-nav) & highlight the current link in nav menu (so the user knows where they are)
 4. [Automatic **Breadcrumb** links](#breadcrumb-trail-links)
 5. [Automatic **Meta descriptions**](#meta-tag-page-descriptions) stored in easily-editable text file
 6. [**`<title>` Tags** that match the current page](#easy-title-tags)
 7. [Print the **page name** in `<h1>`](#print-automatic-page-name-in-h1) automatically (no hard-coding)
-8. [Print **unique ID's for each page** in `<body>` tags](#unique-page-ids-in-body-tag) <br>
-can use css to apply styles to **target on only 1 page**
+8. [Print **unique IDs for each page** in `<body>` tags](#unique-page-ids-in-body-tag) <br>
+*Use css to apply styles to* **target on only 1 page**
 
-##Code Details###
+#Code Details##
 
 ###Your Folder Setup###
-- Every viewable should be called `index.php`
+- Every viewable page should be called `index.php`
 - But MUST HAVE UNIQUE PARENT FOLDER<br>
-(Since they're all called `index.php`, **the *containing folder* is very important to identify the current page**)
+(Since all pages are `index.php`, **a file's *parent folder*/*containing folder* is VERY important to identify the current page**)
 - **Folder names should be lowercase NO SPACES**
+
 - **Folder names BECOME the** ***Page Title***
-- `-` (hyphen characters) will be replaced with `/` (forward-slashes)
-- `_` (underscores) will be replaced with **spaces**
-- The **first letter** of each word will be ***C*****apitalized**
+
+1. `-` (hyphen characters) will be replaced with `/` (forward-slashes)
+2. `_` (underscores) will be replaced with **spaces**
+3. **First letter** of each word will be ***C*****apitalized**
 
 **Example:** The folder "our_prices-services" becomes "Our Prices / Services"
 
@@ -145,7 +146,7 @@ Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-i
 - `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` finishes the link & check if it's an **Active Page** (*DETAILS IN NEXT SECTION*)
 - REMOVE THIS 2ND PART IF YOU DON'T CARE ABOUT **Active Pages** <br>
 - The boring link would just be ``<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php">Portfolio 1</a></li>``
-- MUST HAVE UNIQUE ID'S FOR EACH DROPDOWN <br>
+- MUST HAVE UNIQUE IDS FOR EACH DROPDOWN <br>
 **drop-2** in `<label for="drop-2" class="toggle">Portfolio +</label>` matches **drop-2** in `<input type="checkbox" id="drop-2"/>`
 
 ###Highlight Current Page in Nav###
@@ -202,7 +203,7 @@ This is the whole reason for the `$pageTitle` variable existing
 - `<h1><?php echo $pageTitle . $tagLine; ?></h1>`
 - This is from 1 of the `index.php` pages, but you choose to add it to `header.php` or move it elsewhere
 
-###Unique Page ID's in `<body>` tag###
+###Unique Page IDs in `<body>` tag###
 - Ever need to apply a css rule to **just 1 specific page**?
 - It's easily accomplished with an **ID** in the `<body>` tag
 - Since all pages are called `index.php` you can't target filenames
@@ -210,7 +211,7 @@ This is the whole reason for the `$pageTitle` variable existing
 - `echo '<body id="'.$containing_folder.'">';` (this is from the end of `top.php`)
 - **The `$containing_folder` for `$ROOT_DIRECTORY` has been adjusted to be `"index"`** <br>
 This is to allow easy migration of the site. Nothing relies directly on the value of $ROOT_DIRECTORY, we always access it via the variable so it can easily be changed
-- ID's have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
+- IDs have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
 - `echo '<body id="'.$containing_folder.'">';` in `top.php` would become `<body id="portfolio_1">`
 ```
 #portfolio_1 /*optionally add more CSS selectors here */ {
