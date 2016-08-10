@@ -121,23 +121,38 @@ It uses 2 php includes at the end to render `nav.php` and `header.php`
 2. **`nav.php`** contains global navigation (1 copy for all pages)
 3. **`header.php`** can contain a Global logo, site title, slideshow etc. <br>
 CURRENTLY IT ALSO CONTAINS **Breadcrumbs**. [See details to remove them &#8659;](#breadcrumb-trail-links) <br>
-`<main id="actualMainContent">` at the very end opens a tag to contain the main page content
-4. Then there's the unique page content (e.g. homepage, about, etc.) <br>
-Must `include` the Footer `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`
+`<main id="actualMainContent">` tag is opened in `header.php` but closed in each `index.php` page
+4. Unique page content goes in each `index.php` file (e.g. homepage, about, etc.) <br>
+**Must `include` Footer near end `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`**
 5. **`footer.php`** is for any content you want at the bottom of every page
 
-- **Feel free to rearrange the `php includes` but make sure the tags are nested correctly (like opening `<main>` in `header.php`)**
-- **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->`
+- **Feel free to rearrange the `php includes` but make sure the tags are nested correctly**
+- Notably opening `<main>` in `header.php`, make sure it's nested & closed correctly**
+- **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->` <br>
+If the `PHP includes` are confusing, this helps show how `includes` render in the actual page
 
 ###Linking###
 - Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
-- Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`
+- **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
 - &nbsp;
 - **Examples**
 - **Navigation Links:** `<a href="<?php echo $upFolderPlaceholder ?>index.php">Home</a>`
 - **CSS:** `<link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />`
 - **Images:** `<img src="<?php echo $upFolderPlaceholder;?>images/logo/logo.png" alt="Your Logo">`
 - **PHP Includes:** `<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
+*(this uses `.` to concatenate 2 things & create a complete URL path)*
+
+- Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
+- **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
+- &nbsp;
+- **Navigation Links:** <br>
+`<a href="<?php echo $upFolderPlaceholder ?>index.php">Home</a>`
+- **CSS:** <br>
+`<link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />`
+- **Images:** <br>
+`<img src="<?php echo $upFolderPlaceholder;?>images/logo/logo.png" alt="Your Logo">`
+- **PHP Includes:** <br>
+`<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
 *(this uses `.` to concatenate 2 things & create a complete URL path)*
 
 ###Consistent Navigation (`nav.php`)###
