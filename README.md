@@ -60,10 +60,11 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 2. `_` (underscores) will be replaced with **spaces**
 3. **First letter** of each word will be ***C*****apitalized**
 
-**Example:** The folder "our_prices-services" becomes "Our Prices / Services"
+**Example:** The folder "our_prices-services" becomes "Our Prices / Services" <br>
+Search/Ctrl+F **"convFolder2PgTitle"** in `top.php` to edit the function & change these rules (Maybe you don't want to replace underscores)
 
 ###This Project's Default Folder Setup (what files go where)###
-- The **main homepage** goes in the root directory of your entire project
+- The **Homepage** goes in your site's **root directory** (default is `php-magic-linking` for THIS project)
 - `about/index.php` gets its own folder since it's on the same level of the nav as **Home**
 - `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home** <br>
 *They're mostly placeholder pages used for breadcrumb trails*
@@ -72,17 +73,17 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 - `images/` contains ALL images<br>
 There are many ways to organize your images, so modify as you please
 - `non-pages/` contains anything that ISN'T a complete page <br>
-`php-include/` has partial components that are assembled to create complete pages
-`css/` has the stylesheets
+`php-include/` has partial components that are assembled to create complete pages <br>
+`css/` has the stylesheets <br>
 `descriptions/` has a text file for Meta tag page descriptions
 
 ####THINGS YOU MUST EDIT!####
-- Rename `php-magic-linking` to the name of your site **(or leave it alone if you don't care)**
-- Edit line 12 in `top.php` to match **YOUR ROOT DIRECTORY** <br>
+- Rename `php-magic-linking` to the name of your site's **root directory** **(or leave it alone if you don't care)**
+- Edit line 12 in `top.php` to match <br>
 `$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
-- Every page must manually link to `top.php` BEFORE ANY OTHER PHP CODE! <br>
-**HomePage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
-**1 folder Level below homepage** (from `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
+- Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
+**Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
+**1st-level dropdown** (from `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
 **2 Levels below** (from `/portfolio/examples/index.php`):  **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
 **3 Level below** (from `/portfolio/examples/example_1/index.php`):  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
 - &nbsp;
