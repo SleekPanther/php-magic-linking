@@ -132,15 +132,6 @@ CURRENTLY IT ALSO CONTAINS **Breadcrumbs**. [See details to remove them &#8659;]
 If the `PHP includes` are confusing, this helps show how `includes` render in the actual page
 
 ###Linking###
-- Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
-- **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
-- &nbsp;
-- **Examples**
-- **Navigation Links:** `<a href="<?php echo $upFolderPlaceholder ?>index.php">Home</a>`
-- **CSS:** `<link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />`
-- **Images:** `<img src="<?php echo $upFolderPlaceholder;?>images/logo/logo.png" alt="Your Logo">`
-- **PHP Includes:** `<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
-*(this uses `.` to concatenate 2 things & create a complete URL path)*
 
 - Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
 - **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
@@ -156,24 +147,33 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
 *(this uses `.` to concatenate 2 things & create a complete URL path)*
 
 ###Consistent Navigation (`nav.php`)###
-- Anatomy of a link:
+- **Anatomy of a link:**
 - `<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"' . ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a></li>`
 - `<a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"'` is the part that prints the `href` for the hyperlink
-- `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` finishes the link & check if it's an **Active Page** (*DETAILS IN NEXT SECTION*)
+- `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` finishes the link & checks if it's an **Active Page** (*DETAILS IN NEXT SECTION*) <br>
+*starts with `.` to use PHP to concatenate things together
 - REMOVE THIS 2ND PART IF YOU DON'T CARE ABOUT **Active Pages** <br>
-- The boring link would just be ``<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php">Portfolio 1</a></li>``
-- MUST HAVE UNIQUE IDS FOR EACH DROPDOWN <br>
-**drop-2** in `<label for="drop-2" class="toggle">Portfolio +</label>` matches **drop-2** in `<input type="checkbox" id="drop-2"/>`
+- The boring link would just be <br>
+``<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php">Portfolio 1</a></li>``
+- **MUST HAVE UNIQUE IDS FOR EACH DROPDOWN** <br>
+**"drop-2"** in `<label for="drop-2" class="toggle">Portfolio +</label>` matches **"drop-2"** in `<input type="checkbox" id="drop-2"/>`
+- This is really a feature of the current menu, which is [another git project](https://github.com/SleekPanther/css-dropdown)
+- **The point is: each dropdown has a unique `<input>` ID matching the `for="___"` in the `<label>**
 
 ###Highlight Current Page in Nav###
 - `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` (this is the 2nd part of the LINK FROM JUST ABOVE)
 - It will yield `class="activePage"` **if the folder in the nav matches a folder in the CURRENT URL**
 - `$activePageArrayDropDown1` is created in `top.php`
-- It's an associative array with **keys* matching the *drop-down 1 level folders*
-- Its **values** should be empty, except for 1 kay which will have **activePage** stored in it
-- If **Portfolio 1* is in the path in the URL (really the `portfolio_1` folder ), `$activePageArrayDropDown1['portfolio_1']` will have the value **activePage** stored in it
-- **Use CSS to target the `activePage` class & style the background differently** <br>
+- It's an associative array with **keys** matching the *1st-level dropdown folders*
+- Its **values** should be empty, EXCEPT for 1 key which will have **activePage** stored in it
+- If **Portfolio 1** is in the path in the URL (the `portfolio_1` folder ), `$activePageArrayDropDown1['portfolio_1']` will have the value **activePage** stored in it
+- **Use CSS to style the `activePage` class background differently** <br>
 *currently accomplished in last lines of* **`non-pages/css/menu.css`**
+```
+.activePage {
+    background: #178f26;
+}
+```
 
 ###Breadcrumb Trail Links###
 - Located in `non-pages/php-include/header.php`
