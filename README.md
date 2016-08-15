@@ -8,7 +8,7 @@
 
 You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about`. So put an `index.php` in the folder `/about` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
 
-You can have multiple sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
+You can have multiple sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like `mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
 But you run into trouble **linking between pages**. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc. in the same folder, but it's not very organized or scalable. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the navigation consistent. But nested sub-directories cause problems.
 
@@ -160,14 +160,14 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
 - `<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"' . ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a></li>`
 - `<a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"'` is the part that prints the `href` for the hyperlink
 - `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` finishes the link & checks if it's an **Active Page** (*DETAILS IN NEXT SECTION*) <br>
-*starts with `.` to use PHP to concatenate things together
+*starts with `.` since PHP is concatenating things together*
 - REMOVE THIS 2ND PART IF YOU DON'T CARE ABOUT **Active Pages** <br>
 - The boring link would just be <br>
 ``<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php">Portfolio 1</a></li>``
 - **MUST HAVE UNIQUE IDS FOR EACH DROPDOWN** <br>
 **"drop-2"** in `<label for="drop-2" class="toggle">Portfolio +</label>` matches **"drop-2"** in `<input type="checkbox" id="drop-2"/>`
 - This is really a feature of the current menu, which is [another git project](https://github.com/SleekPanther/css-dropdown)
-- **The point is: each dropdown has a unique `<input>` ID matching the `for="___"` in the `<label>**
+- The point is: **each dropdown has a unique `<input>` ID matching the `for="___"` in the `<label>`**
 
 ###Highlight Current Page in Nav
 - `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` (this is the 2nd part of the LINK FROM JUST ABOVE)
@@ -240,7 +240,7 @@ search for `$tagLine = " - Your Tagline";` in `top.php` if you need to change th
 - **The `$containing_folder` for `$ROOT_DIRECTORY` (the *Homepage*) has been adjusted to `"index"`** <br>
 This is to allow easy migration of the site. Nothing relies directly on the value of $ROOT_DIRECTORY, we always access it via the variable so it can easily be changed
 - IDs have higher [CSS specificity](https://specificity.keegan.st/) than classes, so overriding a global rule **only on the** ***Portfolio 1 Page***
-- `echo '<body id="'.$containing_folder.'">';` in `top.php` will become `<body id="portfolio_1">`
+- `echo '<body id="'.$containing_folder.'">';` in `top.php` will become **`<body id="portfolio_1">`**
 ```
 #portfolio_1 /*optionally add more CSS selectors here */ {
   /*new css rules here*/
