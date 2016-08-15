@@ -1,8 +1,12 @@
-# PHP Magic Linking Template
+#PHP Magic Linking Template
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. So put an `index.php` in the folder `about/` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
+#[Video Walkthroug/Demo]()
+
+#[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)
+
+You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about`. So put an `index.php` in the folder `/about` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
 
 You can have multiple sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
@@ -11,7 +15,7 @@ But you run into trouble **linking between pages**. Small sites can get away wit
 <s>A cheater "solution"  is to have a copy of `nav.php` for each level of directories</s><br>
 DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 
-###The Situation (Problematic Linking)###
+###The Situation (Problematic Linking)
  - Going **from the** ***Homepage*** (`index.php` in the root folder of `mySite.com`) **to** ***About***  would be **`href="about/"`** or `href="about/index.php"`
  - Linking **2-directories down** would be **`href=gallery/indoor/`**
  - Linking **from the** ***Homepage*** always goes **down into** sub-directories, so **no `../` are needed**
@@ -24,7 +28,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
  - **3 different links to the same galley page is no good!**
  <br>All based on where the folders are relative to each other
 
-##The Solution##
+##The Solution
 - **Act as if all links start in the root folder (where the** ***Homepage*** **is)**
 - This code analyzes the URL to find how many folders **below the root directory** the current page is
 - **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
@@ -32,9 +36,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 <br>**Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
 - Code in `top.php` magically prints the correct number of `../` in your link
 
-#[Download The Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)#
-
-##Major Features (click link to jump to section)##
+##Major Features (click link to jump to section)
 1. **[Link to any page](#linking) without using `../` EVER AGAIN! <br>**
 (*also applies to css, images & any files on your site*)
 2. [Consistent nav](#consistent-navigation-navphp) on all pages (using the same `php include`)
@@ -46,9 +48,9 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 8. [Print **unique IDs for each page** in `<body>` tags](#unique-page-ids-in-body-tag) <br>
 *Use css to apply styles to* **target on only 1 page**
 
-#Code Details##
+#Code Details
 
-###Your Folder Setup###
+###Your Folder Setup
 - Every viewable page should be called `index.php`
 - But MUST HAVE UNIQUE PARENT FOLDER<br>
 (Since all pages are `index.php`, **a file's *parent folder*/*containing folder* is VERY important to identify the current page**)
@@ -63,7 +65,7 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
 **Example:** The folder "our_prices-services" becomes "Our Prices / Services" <br>
 Search/Ctrl+F **"convFolder2PgTitle"** in `top.php` to edit the function & change these rules (Maybe you don't want to replace underscores)
 
-###This Project's Default Folder Setup (what files go where)###
+###This Project's Default Folder Setup (what files go where)
 - The **Homepage** goes in your site's **root directory** (default is `php-magic-linking` for THIS project)
 - `about/index.php` gets its own folder since it's on the same level of the nav as **Home**
 - `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home** <br>
@@ -77,7 +79,7 @@ There are many ways to organize your images, so modify as you please
 `css/` has the stylesheets <br>
 `descriptions/` has a text file for Meta tag page descriptions
 
-####THINGS YOU MUST EDIT!####
+####THINGS YOU MUST EDIT!
 - Rename `php-magic-linking` to the name of your site's **root directory** **(or leave it alone if you don't care)**
 - Edit line 12 in `top.php` to match <br>
 `$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
@@ -99,7 +101,7 @@ Replace with your pages, **EXACT FOLDER NAMES (case sensitive)**
 
 - ORDER DOESN'T MATTER, but **don't leave out any pages!**
 
-####More Optional Things To Edit####
+####More Optional Things To Edit
 - Replace default  Favicon `images/0_components/favicon.png` <br>
 `<link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">` in `top.php`
 - Replace default logo `images/logo/logo.png` <br>
@@ -113,7 +115,7 @@ This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at
 - Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
 (You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SECTION &#8659;](#meta-tag-page-descriptions))
 
-###Page Structure (Anatomy of a Page, PHP Includes)###
+###Page Structure (Anatomy of a Page, PHP Includes)
 Viewable pages constructed from partials in `non-pages/php-include/` as follows:
 
 1. **`top/php`** begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
@@ -131,7 +133,7 @@ CURRENTLY IT ALSO CONTAINS **Breadcrumbs**. [See details to remove them &#8659;]
 - **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->` <br>
 If the `PHP includes` are confusing, this helps show how `includes` render in the actual page
 
-###Linking###
+###Linking
 
 - Once `top.php` is `included`, use `$upFolderPlaceHolder` before any link to print the correct number of `../`
 - **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
@@ -146,7 +148,7 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
 `<?php include ($upFolderPlaceholder."non-pages/php-include/nav.php");?>` or `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>` <br>
 *(this uses `.` to concatenate 2 things & create a complete URL path)*
 
-###Consistent Navigation (`nav.php`)###
+###Consistent Navigation (`nav.php`)
 - **Anatomy of a link:**
 - `<li><a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"' . ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a></li>`
 - `<a <?php echo 'href="'.$upFolderPlaceholder.'portfolio/portfolio_1/index.php"'` is the part that prints the `href` for the hyperlink
@@ -160,7 +162,7 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
 - This is really a feature of the current menu, which is [another git project](https://github.com/SleekPanther/css-dropdown)
 - **The point is: each dropdown has a unique `<input>` ID matching the `for="___"` in the `<label>**
 
-###Highlight Current Page in Nav###
+###Highlight Current Page in Nav
 - `. ' class="'.$activePageArrayDropDown1['portfolio_1'].'"'; ?>>Portfolio 1</a>` (this is the 2nd part of the LINK FROM JUST ABOVE)
 - It will yield `class="activePage"` **if the folder in the nav matches a folder in the CURRENT URL**
 - `$activePageArrayDropDown1` is created in `top.php`
@@ -177,7 +179,7 @@ If the `PHP includes` are confusing, this helps show how `includes` render in th
 - `non-pages/css/menu.less` can be ignored if you aren't familiar with `.less` files. Basically it's a fancy version of CSS which is compiled to normal CSS yielding the normal `non-pages/css/menu.css` file <br>
 or check out [Less.js](http://lesscss.org/) to learn more
 
-###Breadcrumb Trail Links###
+###Breadcrumb Trail Links
 - Located in `non-pages/php-include/header.php`
 - Prints **breadcrumb**s to show how to user got to the current page [(breadcrumbs explained)](https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/)
 - **None appear on the** ***Homepage*** <br>
@@ -193,7 +195,7 @@ or check out [Less.js](http://lesscss.org/) to learn more
 this converts a folder like `portfolio_1` to a human readable title like **Portfolio 1** ([exact rules described earlier &#8648;](#your-folder-setup))
 4. The final "crumb" in the chain is the current page. This is **bolded** BUT NOT A LINK!
 
-###Meta Tag Page Descriptions###
+###Meta Tag Page Descriptions
 - These are `<meta name="description" content="your description here">` tags for **search engines**
 - **Based on** `$pageArrayTop, $pageArrayDropDown1, $pageArrayDropDown2` etc.
 - **SO MAKE SURE YOU ADDED ALL YOUR PAGES TO THESE ARRAYS**
@@ -209,20 +211,20 @@ this converts a folder like `portfolio_1` to a human readable title like **Portf
 - If you don't care about page descriptions, replace `<?php echo $pageMeteDescriptions[$containing_folder] ?>` with your generic description for all pages.
 - Like this: `<meta name="description" content="My awesome site description ...">`
 
-###Easy `<title>` Tags###
+###Easy `<title>` Tags
 - `top.php` will print the human-readable Page Title (based on the containing folder)
 - Then it will append your tagline to the end <br>
 search for `$tagLine = " - Your Tagline";` in `top.php` if you need to change the tagline
 - `<title><?php echo $pageTitle.$tagLine ; ?></title>` actually prints it
 
-###Print Automatic Page Name in `<h1>`###
+###Print Automatic Page Name in `<h1>`
 - Similar to `<title>` tags, you can just print the `$pageTitle` variable in an `<h1>` to start every page
 - It's a good practice for `<title>` text & `<h1>` for the Page Title to match. This is for search engine as well as sie users <br>
 *This is the whole reason for the `$pageTitle` variable existing*
 - `<h1><?php echo $pageTitle . $tagLine; ?></h1>`
 - This is from 1 of the `index.php` pages, but you choose to add it to `header.php` or move it elsewhere
 
-###Unique Page IDs in `<body>` tag###
+###Unique Page IDs in `<body>` tag
 - Ever need to apply a css rule to **just 1 specific page**?
 - It's easily accomplished with an **ID** in the `<body>` tag
 - Since all pages are called `index.php` you can't use filenames
@@ -242,10 +244,10 @@ This is to allow easy migration of the site. Nothing relies directly on the valu
 }
 ```
 
-##Extra Notes##
+##Extra Notes
 - This is a readme to demo **usage**, more detailed comments in actual code
 - **Search "454521" using `Ctrl+F` or `Cmd+F` to skip to important sections in `top.php`**
 - The nav menu is adapted from [Pure CSS Mobile-compatible Responsive Dropdown Menu](http://www.cssscript.com/pure-css-mobile-compatible-responsive-dropdown-menu/) <br>
 or check out [My adapted version on GitHub](https://github.com/SleekPanther/css-dropdown)
 
-##Future Feature Goals##
+##Future Feature Goals
