@@ -2,11 +2,11 @@
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-You often store each page in a separate folder to allow more readable URLs. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc. in the same folder, but it's not very organized or scalable. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. So put an `index.php` in the folder `about/`. (Of course `mySite.com/about` would be identical to `mySite.com/about/index.php` in this case)
+You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about/`. So put an `index.php` in the folder `about/` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
 
-You can have multiple layers of sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
+You can have multiple sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like ``mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
-But you run into trouble **linking between pages**. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the same menu on all pages. But nested sub-directories cause problems.
+But you run into trouble **linking between pages**. Small sites can get away with having `index.php`, `about.php`, `gallery1.php`, `gallery2.php` etc. in the same folder, but it's not very organized or scalable. If all pages are in the same folder, you can use **1 copy of global navigation** called `nav.php` & use a **`php include`** to keep the navigation consistent. But nested sub-directories cause problems.
 
 <s>A cheater "solution"  is to have a copy of `nav.php` for each level of directories</s><br>
 DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of the same file
