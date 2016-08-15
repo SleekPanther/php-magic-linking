@@ -4,3 +4,4 @@
 </footer>
 </body>
 </html>
+<!-- end FOOTER.php -->
