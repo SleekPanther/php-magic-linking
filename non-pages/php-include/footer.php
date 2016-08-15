@@ -4,4 +4,3 @@
 </footer>
 </body>
 </html>
-<!-- end footer.php -->
