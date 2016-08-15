@@ -79,10 +79,17 @@ There are many ways to organize your images, so modify as you please
 `css/` has the stylesheets <br>
 `descriptions/` has a text file for Meta tag page descriptions
 
-####THINGS YOU MUST EDIT!
-- Rename `php-magic-linking` to the name of your site's **root directory** **(or leave it alone if you don't care)**
+###Finding Your Root directory (`$ROOT_DIRECTORY` variable)
+- Upload `setup.php` to your web server & **view the page**
+- Or just view `setup.php` on `localhost`
+- This tells you the value you should store in the variable `$ROOT_DIRECTORY`
+
+####**THINGS YOU MUST EDIT!**
+- Rename `php-magic-linking` to the name of your site's **root directory** **(found just above)**
 - Edit line 12 in `top.php` to match <br>
 `$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
+- **If you have more than 5 levels of folders, edit `$cdUpRefArray` to include more `../` in the array** <br>
+`$cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");`
 - Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
 **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
 **1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
