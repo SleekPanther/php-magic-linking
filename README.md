@@ -2,7 +2,7 @@
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-#[Video Walkthroug/Demo]()
+#[Video Walkthroug/Demo (watch 1st)]()
 
 #[Download Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)
 
@@ -92,9 +92,12 @@ Search/`Ctrl+F` **"convFolder2PgTitle"** in `top.php` to edit the function.  (Ma
 `$cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");`
 - Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
  - **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
- - **1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.):  **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
- - **2 Levels below** (e.g. `/portfolio/examples/index.php`):  **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
- - **3 Levels below** (e.g. `/portfolio/examples/example_1/index.php`):  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
+ - **1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.) is <br>
+ **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
+ - **2 Levels below** (e.g. `/portfolio/examples/index.php`) is <br>
+ **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
+ - **3 Levels below** (e.g. `/portfolio/examples/example_1/index.php`) is <br>
+ **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
 - Search/`Ctrl+F` **"36714768356"** in `top.php` (section to list all YOUR pages)
 
 1. Put all top-level pages (including $ROOT_DIRECTORY for **Homepage**) in `$pageArrayTop` array <br>
