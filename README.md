@@ -125,7 +125,7 @@ Search for `<div id="logo">` in `nav.php` to see where it's used
 - Add your site's tagline<br>
 `$tagLine = " - Your Tagline";` in `top.php`
 This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
-- Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs>` tag in `header.php` <br>
+- Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs">...</section>` tag in `header.php` <br>
 *Leave the code in `top.php` alone just in case you want them later*
 - Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
 (You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SECTION &#8659;](#meta-tag-page-descriptions))
@@ -198,9 +198,9 @@ Check out [Less.js](http://lesscss.org/) to learn more
 - Prints **breadcrumbs** to show how to user got to the current page [(breadcrumbs explained)](https://www.smashingmagazine.com/2009/03/breadcrumbs-in-web-design-examples-and-best-practices/)
 - **None appear on the** ***Homepage*** <br>
 (I mean, what's the point. It's the highest level page)
-- If you **don't** want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">` in `header.php`
+- If you **don't** want breadcrumbs, just remove the php code inside `<section class="breadcrumbs">...</section>` in `header.php`
 - Or move that code anywhere else to display **breadcrumbs** in a different location on the page
-- **I recommend keeping `<section class="breadcrumbs">...` in some type of `php include`** That way you only have to change 1 file (e.g. `header.php`) to modify links in the future
+- **I recommend keeping `<section class="breadcrumbs">...</section>` in some type of `php include`** That way you only have to change 1 file (e.g. `header.php`) to modify links in the future
 - Uses `$split_url_adjusted` array
 
 1. Breaks apart the URL into folders
