@@ -83,11 +83,17 @@ Search/`Ctrl+F` **"convFolder2PgTitle"** in `top.php` to edit the function.  (Ma
 - Upload `setup.php` to your web server & **view the page**
 - Or just view `setup.php` on `localhost`
 - This tells you the value you should store in the variable `$ROOT_DIRECTORY`
+- Some common ones are `public_html` or `www-root`
 
 ####**THINGS YOU MUST EDIT!**
 - Rename `php-magic-linking` to your site's **root directory** **(found just above)**
 - Edit line 12 in `top.php` to match <br>
 `$ROOT_DIRECTORY = "php-magic-linking";` (this should match, or be changed)
+- **IF YOUR ROOT DIRECTORY HAS A PARENT FOLDER WITH THE** ***EXACT SAME NAME***
+ - (e.g. `$ROOT_DIRECTORY` is `my-folder` but the complete path is `mysite.com/my-folder/dev/site1/my-folder`
+ - Notice 2 occurrences of `my-folder`
+ - Search/`Ctrl+F` for the line: `for ($i = 0; $i < count($split_url); $i++){`
+ - **Then COMMENT OUT OR REMOVE `break;` 3 lines later**
 - **If you have more than 5 levels of folders, edit `$cdUpRefArray` to include more `../` in the array** <br>
 `$cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");`
 - Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
