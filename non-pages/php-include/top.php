@@ -11,8 +11,7 @@
 //=============IMPORTANT variable $ROOT_DIRECTORY must be where the project is housed (where the homepage is). ==========================
         $ROOT_DIRECTORY = "php-magic-linking";        //MUST CHANGE THIS OR THE ENTIRE PROJECT WON'T WORK! Default is "php-magic-linking" because that's the name of the git repo, but you can rename the root folder and everything else will work as long as this variable matches the new name
         
-        //======Magical code to display errors========\\
-        //======COMMENT OUT WHEN YOU'RE FINISHED TESTING========\\
+        //======Magical code to display PHP errors instead of simply a blank page========\\
         //error_reporting(E_ALL);           //longer version = 2 lines
         //ini_set('display_errors', '1');
         ini_set('error_reporting', E_ALL);  //short version
@@ -40,7 +39,7 @@
         for ($i = 0; $i < count($split_url); $i++){     //loop through the URL
             if ($split_url[$i] == $ROOT_DIRECTORY){     //SUPER IMPORTANT ($ROOT_DIRECTORY must match the BASE folder that the site lives inside)
                 $baseLevelIndex = $i;
-                 break;    //once $ROOT_DIRECTORY is found, quit the loop (minor time saver, but mostly to avoid duplicate folders in the URL. We just want the 1st occurence)
+                 break;    //This stops when the 1st occurence of $ROOT_DIRECTORY is found. COMMENT OUT OR REMOVE THIS  break;  if your actual root directory has a parent folder with the exat same name ()
             }
         }
         $folderCount = count($split_url); //this gives an int of how many folders are in the URL
