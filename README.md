@@ -6,7 +6,7 @@
 
 #[Download Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)
 
-You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about`. So put an `index.php` in the folder `/about` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
+You often store each page in a separate folder to allow more readable URLs. Instead of `mySite.com/about_us_page.php`, you want `mySite.com/about`. So put an `index.php` in the folder `about/` (`mySite.com/about` is equivalent to `mySite.com/about/index.php`)
 
 You can have multiple sub-directories: a main Gallery Page `mySite.com/gallery` that lists the individual sub-galleries like `mySite.com/gallery/indoor` or `mySite.com/gallery/outdoor`
 
@@ -23,17 +23,16 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of `nav.php` when you
  - **From the** ***About Page*** back up **to the** ***homepage*** would be **`href="../"`** or `href="../index.php"`
  - Linking **to a** ***Gallery Page*** would be **`href="../gallery/indoor`**
  - &nbsp;
- - And **from the** ***Indoor Galley*** all the way **to** ***About*** would be `href="../../about/"`
+ - And **from the** ***Indoor Galley*** all the way **to** ***About*** would be **`href="../../about/"`**
  - &nbsp;
- - **3 different links to the same galley page is no good!**
- <br>All based on where the folders are relative to each other
+ - **3 different links to the same** ***Galley Page*** **is no good!**
 
 ##The Solution
 - **Act as if all links start in the root folder (where the** ***Homepage*** **is)**
 - This code analyzes the URL to find how many folders **below the root directory** the current page is
 - **Add `<?php echo $upFolderPlaceHolder ?>` before any link**
-<br>The manual link **from** ***About*** **to** ***Home*** `<a href="index.php">Home</a>`
-<br>**Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
+ - The manual link **from** ***About*** **to** ***Home*** `<a href="index.php">Home</a>`
+ - **Becomes `<a href="<?php echo $upFolderPlaceHolder ?>index.php">Home</a>` & will work from any level directory**
 - Code in `top.php` magically prints the correct number of `../` in your link
 
 ##Major Features (click link to jump to section)
@@ -54,36 +53,37 @@ DON'T TRY THIS! Trust me, it's a pain to maintain 3 copies of `nav.php` when you
 - Every viewable page should be called `index.php`
 - But MUST HAVE UNIQUE PARENT FOLDER<br>
 (Since all pages are `index.php`, **a file's *parent folder*/*containing folder* is VERY important to identify the current page**)
-- **Folder names should be lowercase NO SPACES**
+- **Folder names should be lowercase, NO SPACES**
 
 - **Folder names BECOME the** ***Page Title*** (*stored in `$pageTitle`*
 
 1. `-` (hyphen characters) will be replaced with `/` (forward-slashes)
-2. `_` (underscores) will be replaced with **spaces**
+2. `_` (underscores) will be replaced with **`spaces`**
 3. **First letter** of each word will be ***C*****apitalized**
 
-**Example:** The folder "our_prices-services" becomes "Our Prices / Services" <br>
+**Example:**  
+The folder "our_prices-services" becomes "Our Prices / Services"  
 Search/`Ctrl+F` **"convFolder2PgTitle"** in `top.php` to edit the function.  (Maybe you don't want to replace underscores)
 
 ###This Project's Default Folder Setup (what files go where)
 - The **Homepage** goes in your site's **root directory** (default is `php-magic-linking` for THIS project)
 - `about/index.php` gets its own folder since it's on the same level of the nav as **Home**
-- `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home** <br>
-*They're mostly placeholder pages used for breadcrumb trails*
+- `portfolio/index.php` and `tests/index.php` are also on the same level of the nav as **Home**  
+(*They're mostly placeholder pages used for breadcrumb trails*)
 - `portfolio/portfolio_1/index.php` and `tests/test_1/index.php` are **1-level dropdown** pages
 - `portfolio/examples/example_1/index.php` is a **2nd-level dropdown** page
-- `images/` contains ALL images<br>
+- `images/` contains ALL images  
 *There are many ways to organize your images, so modify as you wish*
-- `non-pages/` contains anything that ISN'T a complete page <br>
- - `php-include/` has partial components that are assembled to create complete pages <br>
- - `css/` has the stylesheets <br>
+- `non-pages/` contains anything that **ISN'T** a complete page
+ - `php-include/` has partial components that are assembled to create complete pages
+ - `css/` has the stylesheets
  - `descriptions/` has a text file for Meta tag page descriptions
 
 ###Finding Your Root directory (`$ROOT_DIRECTORY` variable)
 - Upload `setup.php` to your web server & **view the page**
 - Or just view `setup.php` on `localhost`
-- This tells you the value you should store in the variable `$ROOT_DIRECTORY`
-- Some common ones are `public_html` or `www-root`
+- This tells you the containing folder (*like `pwd` in `command line`*), the value you should store in `$ROOT_DIRECTORY`
+- Some common folders are `public_html` or `www-root`
 
 ####**THINGS YOU MUST EDIT!**
 - Rename `php-magic-linking` to your site's **root directory** **(found just above)**
@@ -93,59 +93,60 @@ Search/`Ctrl+F` **"convFolder2PgTitle"** in `top.php` to edit the function.  (Ma
  - (e.g. `$ROOT_DIRECTORY` is `my-folder` but the complete path is `mysite.com/my-folder/dev/site1/my-folder`
  - Notice 2 occurrences of `my-folder`
  - Search/`Ctrl+F` for the line: `for ($i = 0; $i < count($split_url); $i++){`
- - **Then COMMENT OUT OR REMOVE `break;` 3 lines later**
-- **If you have more than 5 levels of folders, edit `$cdUpRefArray` to include more `../` in the array** <br>
+ - Look 3 lines later for &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **`break;`**
+ - **COMMENT OUT OR REMOVE the &nbsp;&nbsp;&nbsp;&nbsp; `break;`**
+- **If you have more than 5 levels of folders, edit `$cdUpRefArray` to include more `../` in the array**  
 `$cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");`
-- Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE! <br>
- - **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>` <br>
- - **1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.) is <br>
- **`<?php include("../non-pages/php-include/top.php"); ?>`** <br>
- - **2 Levels below** (e.g. `/portfolio/examples/index.php`) is <br>
- **`<?php include("../../non-pages/php-include/top.php"); ?>`** <br>
- - **3 Levels below** (e.g. `/portfolio/examples/example_1/index.php`) is <br>
+- Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE!  
+*This allows you to use `$upFolderPlaceholder` later in the page*
+ - **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>`
+ - **1 folder Level below homepage** (e.g. `/about/index.php`, `/portfolio/index.php` etc.) is  
+ **`<?php include("../non-pages/php-include/top.php"); ?>`**
+ - **2 Levels below** (e.g. `/portfolio/examples/index.php`) is  
+ **`<?php include("../../non-pages/php-include/top.php"); ?>`**
+ - **3 Levels below** (e.g. `/portfolio/examples/example_1/index.php`) is  
  **`<?php include("../../../non-pages/php-include/top.php"); ?>`**
 - Search/`Ctrl+F` **"36714768356"** in `top.php` (section to list all YOUR pages)
 
-1. Put all top-level pages (including $ROOT_DIRECTORY for **Homepage**) in `$pageArrayTop` array <br>
-`$pageArrayTop = array($ROOT_DIRECTORY, 'portfolio', 'tests', 'about');` //this is the default code <br>
+1. Put all top-level pages (including $ROOT_DIRECTORY for **Homepage**) in `$pageArrayTop`  
+`$pageArrayTop = array($ROOT_DIRECTORY, 'portfolio', 'tests', 'about');` //this is the default code  
 Replace with your pages, **EXACT FOLDER NAMES (case sensitive)**
-2. Put ALL 1st-level-dropdown pages in `$pageArrayDropDown1` array <br>
+2. Put ALL 1st-level-dropdown pages in `$pageArrayDropDown1`  
 `$pageArrayDropDown1 = array ('portfolio_1', 'portfolio_2', 'examples', 'test_1', 'test_2');` //default code
-3. Put ALL 2nd-level-dropdown pages in `$pageArrayDropDown1` array <br>
+3. Put ALL 2nd-level-dropdown pages in `$pageArrayDropDown1`  
 `$pageArrayDropDown2 = array ('example_1');` //default code
 
 - ORDER DOESN'T MATTER, but **don't leave out any pages!**
 
 ####More Optional Things To Edit
-- Replace default  Favicon `images/0_components/favicon.png` <br>
+- Replace default Favicon in `images/0_components/favicon.png`  
 `<link rel="icon" type="image/png" href="<?php echo $upFolderPlaceholder ?>images/0_components/favicon.png">` in `top.php`
-- Replace default logo `images/logo/logo.png` <br>
+- Replace default logo in `images/logo/logo.png`  
 Search for `<div id="logo">` in `nav.php` to see where it's used
 - Update `<meta name="author" content="Your Name">` to your name/company in `top.php`
-- Add your site's tagline<br>
-`$tagLine = " - Your Tagline";` in `top.php`
+- Add your site's tagline  
+`$tagLine = " - Your Tagline";` in `top.php`  
 This appears in the `<title>` tag. Like " - Wikipedia, the free encyclopedia" at the end of every Wikipedia Page
-- Breadcrumbs are optional. **To remove:** Simply delete the `<section class="breadcrumbs">...</section>` tag in `header.php` <br>
-*Leave the code in `top.php` alone just in case you want them later*
-- Add page descriptions to appear in `<meta name="description" content="your description here">` <br>
+- Breadcrumbs are optional. **To remove:** Simply delete or move the `<section class="breadcrumbs">...</section>` tag in `header.php`
+- Add page descriptions to appear in `<meta name="description" content="your description here">`  
 (You edit `non-pages/descriptions/descriptions.txt` [JUMP TO DETAILS SECTION &#8659;](#meta-tag-page-descriptions))
 
 ###Page Structure (Anatomy of a Page, PHP Includes)
 Viewable pages constructed from partials in `non-pages/php-include/` as follows:
 
-1. **`top/php`** begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
+1. **`top.php`** begins the HTML file. It has everything in the `<head>` section & important URL magic happens here <br>
 It uses 2 php includes at the end to render `nav.php` and `header.php`
-2. **`nav.php`** contains global navigation (1 copy for all pages)
+2. **`nav.php`** contains Global Navigation (1 copy for all pages)
 3. **`header.php`** can contain a Global logo, site title, slideshow, etc. <br>
 CURRENTLY IT ALSO CONTAINS **Breadcrumbs**. [See details to remove them &#8659;](#breadcrumb-trail-links) <br>
 `<main id="actualMainContent">` tag is opened in `header.php` but closed in each `index.php` page
-4. Unique page content goes in each `index.php` file (e.g. homepage, about, etc.) <br>
-**Must `include` Footer near end `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`**
+4. Unique page content goes in each `index.php` file (e.g. homepage, about, etc.)  
+**Must `include` the Footer near end `<?php include($upFolderPlaceholder . "non-pages/php-include/footer.php"); ?>`**
 5. **`footer.php`** is for any content you want at the bottom of every page
 
-- **Feel free to rearrange the `php includes` but make sure the tags are nested correctly**
-- Notably, opening `<main>` in `header.php`, currently closed in each `index.php` page**
-- **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->` <br>
+- **Feel free to rearrange the `php includes` but make sure the tags are nested correctly**  
+ - Notably, opening `<main>` in `header.php`, currently closed in each `index.php` page**  
+ - **View Page Source** & look for HTML comments like `<!-- header.php -->` and `<!-- end header.php -->`  
 If the `PHP includes` are confusing, this helps show how render the actual page
 
 ###Linking
@@ -153,7 +154,7 @@ If the `PHP includes` are confusing, this helps show how render the actual page
 - **Simply add `<?php echo $upFolderPlaceHolder ?>` anywhere you usually put `../`**
 - &nbsp;
 - **Navigation Links:** <br>
-`<a href="<?php echo $upFolderPlaceholder ?>index.php">Home</a>`
+`<a href="`**`<?php echo $upFolderPlaceholder ?>`**`index.php">Home</a>`
 - **CSS:** <br>
 `<link href='<?php echo $upFolderPlaceholder ?>non-pages/css/style.css' rel='stylesheet' type='text/css' media='screen' />`
 - **Images:** <br>
