@@ -2,7 +2,7 @@
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
-#[Video Walkthroug/Demo (watch 1st)]()
+#[Video Walkthroug/Demo (watch 1st)](https://www.youtube.com/watch?v=PEczo1pLobo)
 
 #[Download Latest Release (Project Zip)](https://github.com/SleekPanther/php-magic-linking/releases/latest)
 
