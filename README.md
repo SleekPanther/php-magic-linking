@@ -95,8 +95,6 @@ Search/`Ctrl+F` **"convFolder2PgTitle"** in `top.php` to edit the function.  (Ma
  - Search/`Ctrl+F` for the line: `for ($i = 0; $i < count($split_url); $i++){`
  - Look 3 lines later for &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **`break;`**
  - **COMMENT OUT OR REMOVE the &nbsp;&nbsp;&nbsp;&nbsp; `break;`**
-- **If you have more than 5 levels of folders, edit `$cdUpRefArray` to include more `../` in the array**  
-`$cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");`
 - Every page must **manually link to `top.php`** BEFORE ANY OTHER PHP CODE!  
 *This allows you to use `$upFolderPlaceholder` later in the page*
  - **Homepage link:** `<?php include("non-pages/php-include/top.php"); ?>`
