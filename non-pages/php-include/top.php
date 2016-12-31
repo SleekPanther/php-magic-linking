@@ -42,18 +42,18 @@
                  break;    //This stops when the 1st occurence of $ROOT_DIRECTORY is found. COMMENT OUT OR REMOVE THIS  break;  if your actual root directory has a parent folder with the exat same name ()
             }
         }
-        $folderCount = count($split_url); //this gives an int of how many folders are in the URL
-    	$folderCountAdjusted = $folderCount - $baseLevelIndex - 1; //subtract $baseLevelIndex to get the base directory (no matter how deep the file structure, this resets it to a base folder. Then subtract 1 to make the "home" directory be 0 folders up from anything
+        $folderCountRaw = count($split_url); //this gives an int of how many folders are in the URL
+    	$folderCount = $folderCountRaw - $baseLevelIndex - 1; //subtract $baseLevelIndex to get the base directory (no matter how deep the file structure, this resets it to a base folder. Then subtract 1 to make the "home" directory be 0 folders up from anything
         //0 means the homepage, 1 means top level pages (file is located in 1 folder below $ROOT_DIRECTORY), 2 means 2 levels down, etc.
 	
         $split_url_adjusted = $split_url;       //array to hold the URL parts AFTER the $ROOT_DIRECTORY (remove any directories ABOVE $ROOT_DIRECTORY)
-        for($i = 0; $i< ($folderCount - $folderCountAdjusted -1); $i++){   //remove the beginning indices of the array (anything before $ROOT_DIRETORY)
+        for($i = 0; $i< ($folderCountRaw - $folderCount -1); $i++){   //remove the beginning indices of the array (anything before $ROOT_DIRETORY)
             unset($split_url_adjusted[$i]);     //actually remove the element, but the indices will be messed up
         }
         $split_url_adjusted= array_values($split_url_adjusted);     //array_values re-indexes the array. Now this contains a list folderis in the the URL including & AFTER the $ROOT_DIRECTORY
         
         $containing_folder =  $split_url_adjusted[count($split_url_adjusted) -1] ; //IMPORTANT this gets the very last folder in the $split_url_adjusted array (the very last index of an array is 1 less than its size, hence: count($split_url_adjusted) -1 ). This folder "contains" the current page file. Used almost everywhere to tell what page I'm on since all my pages are called 'index.php' but have unique cotaining-folder names
-        if($folderCountAdjusted == 0){      //special case for the homepage. Since its actual containing folder is the contents of $ROOT_DIRECTORY, it must be overridden to equal "index". This is to avoid confusion if $ROOT_DIRECTOY is NOT a a good name for the site. This disregards where the site is located & just make the homepage's containing folder = "index". ALSO USED TO PRINT ID'S IN THE BODY TAG FOR EACH PAGE
+        if($folderCount == 0){      //special case for the homepage. Since its actual containing folder is the contents of $ROOT_DIRECTORY, it must be overridden to equal "index". This is to avoid confusion if $ROOT_DIRECTOY is NOT a a good name for the site. This disregards where the site is located & just make the homepage's containing folder = "index". ALSO USED TO PRINT ID'S IN THE BODY TAG FOR EACH PAGE
             $containing_folder = 'index';
         }
     	$fileName = $path_parts['filename'];		//not used much, but just in case
@@ -61,7 +61,7 @@
 	
 
         $upFolderPlaceholder='';                //initialize to empty string (assume it's at the highest folder level)
-        for($i=0; $i<$folderCountAdjusted; $i++){
+        for($i=0; $i<$folderCount; $i++){
             $upFolderPlaceholder.='../';      //append ../ for how many levels the currrent folder is below the root
         }
 
@@ -88,7 +88,7 @@
             return ucwords($pgTitleOutput);                                 //capitalize 1st letter of each word
         }
         $pageTitle = convFolder2PgTitle($containing_folder);    //This is basiaclly the "Page Name". Can easily be added to all <title> tags & printed as the 1st <h1> on pages. ALL BASED ON CONTAINING FOLDER
-        if ($folderCountAdjusted == 0) {    //if it's the homepage, hardcode it instead of the base folder where the site's located
+        if ($folderCount == 0) {    //if it's the homepage, hardcode it instead of the base folder where the site's located
             $pageTitle = "Home";
         }
         
@@ -120,16 +120,16 @@
         }
         
         //call function to fill arrays with "activePage" in correct place. But only bother analyzing multiple folder levels if the current page is a dropdown. Homepage is a special case, but for all deeper folder levels, they check >=. For instance, the "About Page" is a top-level page, so dropdowns shouldn't even be analyzed. But "Portfolio 1" is a Level 1 Dropdown so 2 levels of folders should be searched to find 'activePage'
-        if($folderCountAdjusted == 0){      //special case for the homepage. Since it's in $ROOT_DIRETORY, it's essentialy 0 folders down from itself
+        if($folderCount == 0){      //special case for the homepage. Since it's in $ROOT_DIRETORY, it's essentialy 0 folders down from itself
             $activePageArrayTop[$ROOT_DIRECTORY] = 'activePage';    //must hardcode activePage
         }
-        if($folderCountAdjusted >= 1){
+        if($folderCount >= 1){
             fillActivePageArrays($pageArrayTop, $activePageArrayTop, $split_url_adjusted, 1);
         }
-        if($folderCountAdjusted >= 2){
+        if($folderCount >= 2){
             fillActivePageArrays($pageArrayDropDown1, $activePageArrayDropDown1, $split_url_adjusted, 2);
         }
-        if($folderCountAdjusted >= 3){
+        if($folderCount >= 3){
             fillActivePageArrays($pageArrayDropDown2, $activePageArrayDropDown2, $split_url_adjusted, 3);
         }   //add more if statements for deeper level dropdowns (if needed)
     ?>

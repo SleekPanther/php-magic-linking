@@ -5,9 +5,9 @@
 
     <section class="breadcrumbs">
         <?php
-            if($folderCountAdjusted != 0){      //don't bother with breadcrumbs on the homepage
+            if($folderCount != 0){      //don't bother with breadcrumbs on the homepage
                 $tempBreadLink = $domain . '/';     //$tempBreadLink holds the patial URL @ each level, the loop starts @ the top & prints out links adding to the end of this varable 
-                for($i = 0; $i < $folderCountAdjusted; $i++){       //start @ 0 & go until we've runo ut of folders
+                for($i = 0; $i < $folderCount; $i++){       //start @ 0 & go until we've runo ut of folders
                     $tempBreadLink .= $split_url_adjusted[$i] .'/';     //add a folder to the to the end
                     echo '<a href="' . $tempBreadLink . '" >' . ($i== 0 ? 'Home' : convFolder2PgTitle($split_url_adjusted[$i]) ) .'</a> > ';    //print link to the partial URL. Using if-then shorthand on 1 line. The "Homepage" level is special. We want to print "Home" instead of whatever $ROOT_DIRECTORY is, so we have a special case when $i = 0.
                     //For all other pages, call convFolder2PgTitle() & send in $split_url_adjusted[$i] to get a human readable link title based on the folder
