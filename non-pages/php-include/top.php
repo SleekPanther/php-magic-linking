@@ -33,7 +33,7 @@
         $path_parts = pathinfo($phpSelf);       //get an associative array of the url with dirname, basename, extension & filename
         
         
-        $split_url = explode('/', $path_parts['dirname']);  //split dirname part of the array at each / character (creates array)
+        $split_url = explode('/', $path_parts['dirname']);  //split string of directories at each / character
         
         $baseLevelIndex = 0;        //used to find the "base directory" in the url. If the site's home is in "topLevel/level1/level2/ROOT_SITE_FOLDER_HERE" then it's 3 folders down, so everything should relate the the url array from index 3. We iterate through the URL array to find the $ROOT_FOLDER, then adjust and make a new array
         for ($i = 0; $i < count($split_url); $i++){     //loop through the URL
@@ -57,10 +57,14 @@
             $containing_folder = 'index';
         }
     	$fileName = $path_parts['filename'];		//not used much, but just in case
-        $dirName = $path_parts['dirname'];              //the url of folders (excluding filename). Not used much
+        $dirName = $path_parts['dirname'];          //the url of folders (excluding filename). Not used much
 	
-        $cdUpRefArray = array("", "../", "../../", "../../../", "../../../../", "../../../../../");        //"Change Directories Up Reference Array" hold string value of what to type to navigate up a directory. 0 folders down corresponds to the 0th index or "", 1 folder down corresponds to the 1st index or "../" (so that links go to the right place)
-        $upFolderPlaceholder = $cdUpRefArray[ $folderCountAdjusted ];   //this is used extensively to make links in subfolders go to the right location. It checks how many folders down it is, then prints the correct number or ../ to get back to the $ROOT_DIRECTORY before going down any more directories
+
+        $upFolderPlaceholder='';                //initialize to empty string (assume it's at the highest folder level)
+        for($i=0; $i<$folderCountAdjusted; $i++){
+            $upFolderPlaceholder.='../';      //append ../ for how many levels the currrent folder is below the root
+        }
+
         //end path setup
         // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
         
