@@ -1,4 +1,4 @@
-#PHP Magic Linking Template
+# PHP Magic Linking Template
 
 **NEVER WORRY ABOUT PUTTING ../ BEFORE LINKS EVER AGAIN!**
 
